@@ -84,6 +84,11 @@ public class Canton {
             return false;
         }
         final Canton other = (Canton) obj;
+        if (!Objects.equals(this.numero, other.numero)) {
+            return false;
+        }
         return true;
     }
+
+    
 }

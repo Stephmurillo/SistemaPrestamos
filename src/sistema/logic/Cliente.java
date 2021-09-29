@@ -37,9 +37,12 @@ public class Cliente {
         this.nombre = "";
     }
 
-    public Cliente(String cedula, String nombre) {
+    public Cliente(String cedula, String nombre, Provincia provincia, Canton canton, Distrito distrito) {
         this.cedula = cedula;
         this.nombre = nombre;
+        this.provincia = provincia;
+        this.canton = canton;
+        this.distrito  = distrito;
     }
 
     public String getCedula() {

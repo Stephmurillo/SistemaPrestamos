@@ -69,8 +69,13 @@ public class Distrito {
             return false;
         }
         final Distrito other = (Distrito) obj;
+        if (!Objects.equals(this.numero, other.numero)) {
+            return false;
+        }
         return true;
     }
+
+
     
     
 }
