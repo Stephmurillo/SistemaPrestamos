@@ -65,5 +65,21 @@ public class Data {
         this.distritos = distritos;
     }
 
-    
+    public List<String> toStringCantones() {
+        List<String> lista = new ArrayList<>();
+        int size = cantones.size();
+        for (int i = 0; i < size; i++) {
+            lista.add(cantones.get(i).toString());
+        }
+        return lista;
+    }
+
+    public List<String> toStringDistritos() {
+        List<String> lista = new ArrayList<>();
+        int size = distritos.size();
+        for (int i = 0; i < size; i++) {
+            lista.add(distritos.get(i).toString());
+        }
+        return lista;
+    }
 }

@@ -5,11 +5,13 @@
  */
 package sistema.presentation.cliente;
 
-import java.lang.reflect.Array;
 import java.util.Observable;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import sistema.logic.Canton;
 import sistema.logic.Cliente;
+import sistema.logic.Distrito;
+import sistema.logic.Provincia;
 
 /**
  *
@@ -39,7 +41,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
     
     @Override
     public void update(Observable o, Object arg) {
-        Cliente cliente = model.getCliente();
+        cliente = model.getCliente();
         cedula.setText(cliente.getCedula());
         nombre.setText(cliente.getNombre());
         if (cliente.getCedula().isEmpty()) {
@@ -55,7 +57,6 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
         this.provincia = Integer.parseInt(cliente.getProvincia().getNumero());
         ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[provincia]));
         this.flag.setIcon(imageIcon);
-        jButtonPrestamo.setEnabled(true);
         }
     }
     
@@ -143,6 +144,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
 
         jButtonGuardar.setForeground(new java.awt.Color(0, 102, 102));
         jButtonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/guardarIcon.png"))); // NOI18N
+        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGuardarActionPerformed(evt);
+            }
+        });
 
         jButtonPrestamo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/prestamoIcon.png"))); // NOI18N
         jButtonPrestamo.setEnabled(false);
@@ -235,6 +241,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
 
     private void jButtonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarActionPerformed
         controller.clienteGet(cedula.getText());
+        jButtonPrestamo.setEnabled(true);
     }//GEN-LAST:event_jButtonConsultarActionPerformed
 
     private void flagMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flagMouseMoved
@@ -245,6 +252,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
             ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[1]));
             if (imageIcon != null) {
                 this.flag.setIcon(imageIcon);
+                this.provincia = 1;
             } else {
                 this.flag.setText(MESSAGE);
             }  
@@ -252,6 +260,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
             ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[2]));
             if (imageIcon != null) {
                 this.flag.setIcon(imageIcon);
+                this.provincia = 2;
             } else {
                 this.flag.setText(MESSAGE);
             }  
@@ -259,6 +268,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
             ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[3]));
             if (imageIcon != null) {
                 this.flag.setIcon(imageIcon);
+                this.provincia = 3;
             } else {
                 this.flag.setText(MESSAGE);
             }  
@@ -266,6 +276,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
             ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[4]));
             if (imageIcon != null) {
                 this.flag.setIcon(imageIcon);
+                this.provincia = 4;
             } else {
                 this.flag.setText(MESSAGE);
             }  
@@ -273,6 +284,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
             ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[5]));
             if (imageIcon != null) {
                 this.flag.setIcon(imageIcon);
+                this.provincia = 5;
             } else {
                 this.flag.setText(MESSAGE);
             }  
@@ -280,6 +292,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
             ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[6]));
             if (imageIcon != null) {
                 this.flag.setIcon(imageIcon);
+                this.provincia = 6;
             } else {
                 this.flag.setText(MESSAGE);
             }  
@@ -287,6 +300,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
             ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[7]));
             if (imageIcon != null) {
                 this.flag.setIcon(imageIcon);
+                this.provincia = 7;
             } else {
                 this.flag.setText(MESSAGE);
             }  
@@ -294,21 +308,36 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
     }//GEN-LAST:event_flagMouseMoved
 
     private void flagMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flagMouseExited
-        ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[provincia]));
+        ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[this.provincia]));
         this.flag.setIcon(imageIcon);
     }//GEN-LAST:event_flagMouseExited
 
     private void flagMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flagMouseClicked
-        // TODO add your handling code here:
+        if(evt.getClickCount() == 2){
+            Cliente cliente = model.getCliente(); 
+            jComboBoxProvincias.setSelectedIndex(this.provincia - 1);
+            ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[this.provincia]));
+            this.flag.setIcon(imageIcon);
+            cliente.setProvincia((Provincia)jComboBoxProvincias.getSelectedItem());
+            jComboBoxCantones.setModel(new DefaultComboBoxModel(cliente.getProvincia().getCantones().toArray()));
+            jComboBoxCantones.setSelectedItem(jComboBoxDistritos.getSelectedItem());
+            cliente.setCanton((Canton)jComboBoxCantones.getSelectedItem());
+            jComboBoxDistritos.setModel(new DefaultComboBoxModel(cliente.getCanton().getDistritos().toArray()));
+            jComboBoxDistritos.setSelectedItem(jComboBoxDistritos.getSelectedItem());
+        }
     }//GEN-LAST:event_flagMouseClicked
 
     private void jComboBoxProvinciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxProvinciasActionPerformed
-       
+   
     }//GEN-LAST:event_jComboBoxProvinciasActionPerformed
 
     private void jComboBoxCantonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCantonesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxCantonesActionPerformed
+
+    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
+        controller.clienteAdd(new Cliente(cedula.getText(), nombre.getText(),(Provincia) jComboBoxProvincias.getSelectedItem(), (Canton)jComboBoxCantones.getSelectedItem(), (Distrito)jComboBoxDistritos.getSelectedItem()));
+    }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     public static void main(String[] args) {
         // TODO code application logic here
@@ -318,6 +347,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
     
     private String MESSAGE;
     public int provincia;
+    Cliente cliente;
     int x;
     int y;
     String[] imagenes = {"0.jpg", "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg"};
