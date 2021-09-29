@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sistema.presentation.patron;
+package sistema.presentation.cliente;
 
 /**
  *
@@ -13,7 +13,10 @@ package sistema.presentation.patron;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import sistema.logic.Canton;
 import sistema.logic.Cliente;
+import sistema.logic.Distrito;
+import sistema.logic.Provincia;
 
 public class Model extends Observable{
     
@@ -21,7 +24,35 @@ public class Model extends Observable{
     // Model gets and sets here
     
     Cliente cliente;
-    List<Cliente> clientes;
+    List<Cliente> clientes; 
+    List<Provincia> provincias;
+    List<Canton> cantones;
+    List<Distrito> distritos;
+    
+    public List<Provincia> getProvincias() {
+        return provincias;
+    }
+
+    public void setProvincias(List<Provincia> provincias) {
+        this.provincias = provincias;
+    }
+
+    public List<Canton> getCantones() {
+        return cantones;
+    }
+
+    public void setCantones(List<Canton> cantones) {
+        this.cantones = cantones;
+    }
+
+    public List<Distrito> getDistritos() {
+        return distritos;
+    }
+
+    public void setDistritos(List<Distrito> distritos) {
+        this.distritos = distritos;
+    }
+    
 
     public Cliente getCliente() {
         return cliente;

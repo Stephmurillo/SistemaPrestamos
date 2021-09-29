@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <data>
+<clientes>
+<cedula>111</cedula>
+<nombre>Juan</nombre>
+<provincia>1</provincia>
+<canton>1</canton>
+<distrito>1</distrito>
+</clientes>
+<clientes>
+<cedula>222</cedula>
+<nombre>Steph</nombre>
+<provincia>5</provincia>
+<canton>1</canton>
+<distrito>1</distrito>
+</clientes>
 <provincias>
 <numero>1</numero>
 <nombre>San José</nombre>

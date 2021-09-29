@@ -1,4 +1,4 @@
-package sistema.presentation.patron;
+package sistema.presentation.cliente;
 
 import java.util.HashSet;
 import java.util.logging.Level;
@@ -13,8 +13,8 @@ public class Controller {
     public Controller(Model model, View view) {
         this.model = model;
         this.view = view;
-        // invoke Model sets for initialization before linking to the view
-        // problably get the data from Service
+        model.setProvincias(Service.instance().provinciaAll());
+        model.setCantones(Service.instance().cantonAll());
         model.setCliente(new Cliente());
         view.setModel(model);
         view.setController(this);

@@ -5,9 +5,9 @@
  */
 package sistema;
 
-import sistema.presentation.patron.Controller;
-import sistema.presentation.patron.Model;
-import sistema.presentation.patron.View;
+import sistema.presentation.cliente.Controller;
+import sistema.presentation.cliente.Model;
+import sistema.presentation.cliente.View;
 
 /**
  *

@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sistema.presentation.patron;
+package sistema.presentation.cliente;
 
-import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.Observable;
-import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import sistema.logic.Cliente;
 
@@ -42,14 +42,15 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
         Cliente cliente = model.getCliente();
         cedula.setText(cliente.getCedula());
         nombre.setText(cliente.getNombre());
-        
         if (cliente.getCedula().isEmpty()) {
             this.provincia = 0;
         }
         else {
-            //this.provincia = Integer.parseInt(cliente.getProvincia().getNumero());
+            jComboBoxProvincias.setModel(new DefaultComboBoxModel(model.getProvincias().toArray()));
+            jComboBoxProvincias.setSelectedItem(cliente.getProvincia().toString());
+            jComboBoxCantones.setModel(new DefaultComboBoxModel(cliente.getProvincia().getCantones().toArray()));
+            jComboBoxCantones.setSelectedItem(cliente.getCanton().toString());
             this.provincia = Integer.parseInt(cliente.getCedula().substring(0, 1));
-            
             ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[provincia]));
             this.flag.setIcon(imageIcon);
         }
@@ -70,28 +71,40 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelCedula = new javax.swing.JLabel();
+        jLabelNombre = new javax.swing.JLabel();
+        jLabelProvincia = new javax.swing.JLabel();
         cedula = new javax.swing.JTextField();
         nombre = new javax.swing.JTextField();
         flag = new javax.swing.JLabel();
         consultar = new javax.swing.JButton();
+        jComboBoxProvincias = new javax.swing.JComboBox<>();
+        jLabelCanton = new javax.swing.JLabel();
+        jLabelDistrito = new javax.swing.JLabel();
+        jComboBoxCantones = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema");
 
-        jLabel1.setText("Cedula");
+        jLabelCedula.setText("Cedula");
 
-        jLabel2.setText("Nombre");
+        jLabelNombre.setText("Nombre");
 
-        jLabel3.setText("Provincia");
+        jLabelProvincia.setText("Provincia");
 
-        flag.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/patron/0.jpg"))); // NOI18N
+        flag.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/0.jpg"))); // NOI18N
         flag.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         flag.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 flagMouseMoved(evt);
+            }
+        });
+        flag.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                flagMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                flagMouseExited(evt);
             }
         });
 
@@ -101,6 +114,19 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
                 consultarActionPerformed(evt);
             }
         });
+
+        jComboBoxProvincias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxProvincias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxProvinciasActionPerformed(evt);
+            }
+        });
+
+        jLabelCanton.setText("Canton");
+
+        jLabelDistrito.setText("Distrito");
+
+        jComboBoxCantones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,8 +139,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
+                                    .addComponent(jLabelCedula)
+                                    .addComponent(jLabelNombre))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -122,11 +148,20 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
                                         .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(consultar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(62, 62, 62)
+                                .addComponent(jLabelCanton)
+                                .addGap(73, 73, 73)
+                                .addComponent(jLabelDistrito))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jComboBoxProvincias, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBoxCantones, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(flag, javax.swing.GroupLayout.PREFERRED_SIZE, 906, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(flag)))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,17 +170,24 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(consultar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
+                        .addComponent(jLabelCedula)
                         .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(jLabelNombre)
                     .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelProvincia)
+                    .addComponent(jLabelCanton)
+                    .addComponent(jLabelDistrito))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(flag, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxProvincias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxCantones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(flag)
+                .addGap(32, 32, 32))
         );
 
         pack();
@@ -157,7 +199,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
 
     private void flagMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flagMouseMoved
        x = evt.getX();
-        y = evt.getY();
+       y = evt.getY();
         
         if (x >= xCrd[0] && x <= xCrd[1] && y >= yCrd[0] && y <= yCrd[1]){
             ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[1]));
@@ -211,6 +253,19 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
         }
     }//GEN-LAST:event_flagMouseMoved
 
+    private void flagMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flagMouseExited
+        ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[provincia]));
+        this.flag.setIcon(imageIcon);
+    }//GEN-LAST:event_flagMouseExited
+
+    private void flagMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flagMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_flagMouseClicked
+
+    private void jComboBoxProvinciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxProvinciasActionPerformed
+       
+    }//GEN-LAST:event_jComboBoxProvinciasActionPerformed
+
     public static void main(String[] args) {
         // TODO code application logic here
       View ventana = new View();
@@ -222,15 +277,19 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
     int x;
     int y;
     String[] imagenes = {"0.jpg", "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg"};
-    int[] xCrd = {407, 522, 350, 501, 564, 674, 502, 574, 100, 328, 632, 800, 245, 378, 573, 676, 692, 800};
-    int[] yCrd = {340, 416, 70, 260, 325, 438, 148, 288, 144, 160, 480, 670, 294, 420, 150, 332, 151, 489};
+    int[] xCrd = {101, 129, 89, 124, 134, 171, 125, 142, 29, 74, 158, 201, 63, 91, 143, 170, 175, 206};
+    int[] yCrd = {84, 106, 20, 85, 84, 105, 37, 70, 18, 85, 124, 180, 71, 108, 35, 79, 86, 123};
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cedula;
     private javax.swing.JButton consultar;
     private javax.swing.JLabel flag;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JComboBox<String> jComboBoxCantones;
+    private javax.swing.JComboBox<String> jComboBoxProvincias;
+    private javax.swing.JLabel jLabelCanton;
+    private javax.swing.JLabel jLabelCedula;
+    private javax.swing.JLabel jLabelDistrito;
+    private javax.swing.JLabel jLabelNombre;
+    private javax.swing.JLabel jLabelProvincia;
     private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 }
