@@ -42,20 +42,20 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
         Cliente cliente = model.getCliente();
         cedula.setText(cliente.getCedula());
         nombre.setText(cliente.getNombre());
-        //TODO: hacer que los dropbo de canton y distrito muestren el valor correcto
         if (cliente.getCedula().isEmpty()) {
             this.provincia = 0;
         }
         else {
         jComboBoxProvincias.setModel(new DefaultComboBoxModel(model.getProvincias().toArray()));
-        jComboBoxProvincias.setSelectedItem(cliente.getProvincia().toString());
+        jComboBoxProvincias.setSelectedItem(cliente.getProvincia());
         jComboBoxCantones.setModel(new DefaultComboBoxModel(cliente.getProvincia().getCantones().toArray()));
         jComboBoxCantones.setSelectedItem(cliente.getCanton());
         jComboBoxDistritos.setModel(new DefaultComboBoxModel(cliente.getCanton().getDistritos().toArray()));
         jComboBoxDistritos.setSelectedItem(cliente.getDistrito());
-            this.provincia = Integer.parseInt(cliente.getCedula().substring(0, 1));
-            ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[provincia]));
-            this.flag.setIcon(imageIcon);
+        this.provincia = Integer.parseInt(cliente.getProvincia().getNumero());
+        ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[provincia]));
+        this.flag.setIcon(imageIcon);
+        jButtonPrestamo.setEnabled(true);
         }
     }
     
@@ -145,6 +145,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
         jButtonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/guardarIcon.png"))); // NOI18N
 
         jButtonPrestamo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/prestamoIcon.png"))); // NOI18N
+        jButtonPrestamo.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
