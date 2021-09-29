@@ -57,8 +57,6 @@ public class Provincia {
         hash = 79 * hash + Objects.hashCode(this.numero);
         return hash;
     }
-    
-    
 
     @Override
     public boolean equals(Object obj) {
@@ -72,6 +70,11 @@ public class Provincia {
             return false;
         }
         final Provincia other = (Provincia) obj;
+        if (!Objects.equals(this.numero, other.numero)) {
+            return false;
+        }
         return true;
     }
+    
+    
 }
