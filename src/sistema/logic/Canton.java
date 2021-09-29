@@ -17,12 +17,23 @@ import javax.xml.bind.annotation.XmlIDREF;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Canton {
 
+    public Canton(String numero, String nombre, List<Distrito> distritos) {
+        this.numero = numero;
+        this.nombre = nombre;
+        this.distritos = distritos;
+    }
+
+    public Canton() {
+        this.numero = "";
+        this.nombre = "";
+        this.distritos = null;
+    }
     
     @XmlID
     String numero;
     String nombre;
     @XmlIDREF
-    List<Distrito> distrito;
+    List<Distrito> distritos;
     
     
     
@@ -44,6 +55,14 @@ public class Canton {
     
     public String toString() {
         return nombre;
+    }
+
+    public List<Distrito> getDistritos() {
+        return distritos;
+    }
+
+    public void setDistritos(List<Distrito> distritos) {
+        this.distritos = distritos;
     }
     
     @Override
