@@ -15,6 +15,7 @@ public class Controller {
         this.view = view;
         model.setProvincias(Service.instance().provinciaAll());
         model.setCantones(Service.instance().cantonAll());
+        model.setDistritos(Service.instance().distritoAll());
         model.setCliente(new Cliente());
         view.setModel(model);
         view.setController(this);

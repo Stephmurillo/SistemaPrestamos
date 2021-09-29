@@ -46,13 +46,16 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
             this.provincia = 0;
         }
         else {
-            jComboBoxProvincias.setModel(new DefaultComboBoxModel(model.getProvincias().toArray()));
-            jComboBoxProvincias.setSelectedItem(cliente.getProvincia().toString());
-            jComboBoxCantones.setModel(new DefaultComboBoxModel(cliente.getProvincia().getCantones().toArray()));
-            jComboBoxCantones.setSelectedItem(cliente.getCanton().toString());
-            this.provincia = Integer.parseInt(cliente.getCedula().substring(0, 1));
-            ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[provincia]));
-            this.flag.setIcon(imageIcon);
+        jComboBoxProvincias.setModel(new DefaultComboBoxModel(model.getProvincias().toArray()));
+        jComboBoxProvincias.setSelectedItem(cliente.getProvincia());
+        jComboBoxCantones.setModel(new DefaultComboBoxModel(cliente.getProvincia().getCantones().toArray()));
+        jComboBoxCantones.setSelectedItem(cliente.getCanton());
+        jComboBoxDistritos.setModel(new DefaultComboBoxModel(cliente.getCanton().getDistritos().toArray()));
+        jComboBoxDistritos.setSelectedItem(cliente.getDistrito());
+        this.provincia = Integer.parseInt(cliente.getProvincia().getNumero());
+        ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[provincia]));
+        this.flag.setIcon(imageIcon);
+        jButtonPrestamo.setEnabled(true);
         }
     }
     
@@ -77,11 +80,14 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
         cedula = new javax.swing.JTextField();
         nombre = new javax.swing.JTextField();
         flag = new javax.swing.JLabel();
-        consultar = new javax.swing.JButton();
+        jButtonConsultar = new javax.swing.JButton();
         jComboBoxProvincias = new javax.swing.JComboBox<>();
         jLabelCanton = new javax.swing.JLabel();
         jLabelDistrito = new javax.swing.JLabel();
         jComboBoxCantones = new javax.swing.JComboBox<>();
+        jComboBoxDistritos = new javax.swing.JComboBox<>();
+        jButtonGuardar = new javax.swing.JButton();
+        jButtonPrestamo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema");
@@ -108,14 +114,14 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
             }
         });
 
-        consultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/consultarIcon.jpg"))); // NOI18N
-        consultar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/consultarIcon.png"))); // NOI18N
+        jButtonConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                consultarActionPerformed(evt);
+                jButtonConsultarActionPerformed(evt);
             }
         });
 
-        jComboBoxProvincias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxProvincias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
         jComboBoxProvincias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxProvinciasActionPerformed(evt);
@@ -126,76 +132,110 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
 
         jLabelDistrito.setText("Distrito");
 
-        jComboBoxCantones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxCantones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
+        jComboBoxCantones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxCantonesActionPerformed(evt);
+            }
+        });
+
+        jComboBoxDistritos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
+
+        jButtonGuardar.setForeground(new java.awt.Color(0, 102, 102));
+        jButtonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/guardarIcon.png"))); // NOI18N
+
+        jButtonPrestamo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/prestamoIcon.png"))); // NOI18N
+        jButtonPrestamo.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxProvincias, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelCedula)
-                                    .addComponent(jLabelNombre))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(consultar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(62, 62, 62)
+                                .addGap(14, 14, 14)
                                 .addComponent(jLabelCanton)
-                                .addGap(73, 73, 73)
-                                .addComponent(jLabelDistrito))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBoxProvincias, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxCantones, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(88, 88, 88))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxCantones, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(14, 14, 14)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelDistrito)
+                            .addComponent(jComboBoxDistritos, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(flag)))
-                .addContainerGap(226, Short.MAX_VALUE))
+                        .addComponent(flag)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                        .addComponent(jButtonPrestamo)
+                        .addGap(35, 35, 35))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelCedula)
+                            .addComponent(jLabelNombre))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                            .addComponent(cedula))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonGuardar)
+                        .addGap(53, 53, 53))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(consultar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelCedula)
+                                    .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(27, 27, 27)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelNombre))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelProvincia)
+                                    .addComponent(jLabelDistrito)
+                                    .addComponent(jLabelCanton)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonGuardar))))
+                    .addComponent(jButtonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabelCedula)
-                        .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelNombre)
-                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelProvincia)
-                    .addComponent(jLabelCanton)
-                    .addComponent(jLabelDistrito))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxProvincias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxCantones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(flag)
-                .addGap(32, 32, 32))
+                        .addComponent(jComboBoxProvincias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxCantones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxDistritos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(flag)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButtonPrestamo)
+                        .addGap(81, 81, 81))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarActionPerformed
+    private void jButtonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarActionPerformed
         controller.clienteGet(cedula.getText());
-    }//GEN-LAST:event_consultarActionPerformed
+    }//GEN-LAST:event_jButtonConsultarActionPerformed
 
     private void flagMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flagMouseMoved
        x = evt.getX();
@@ -266,6 +306,10 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
        
     }//GEN-LAST:event_jComboBoxProvinciasActionPerformed
 
+    private void jComboBoxCantonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCantonesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxCantonesActionPerformed
+
     public static void main(String[] args) {
         // TODO code application logic here
       View ventana = new View();
@@ -281,9 +325,12 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
     int[] yCrd = {84, 106, 20, 85, 84, 105, 37, 70, 18, 85, 124, 180, 71, 108, 35, 79, 86, 123};
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cedula;
-    private javax.swing.JButton consultar;
     private javax.swing.JLabel flag;
+    private javax.swing.JButton jButtonConsultar;
+    private javax.swing.JButton jButtonGuardar;
+    private javax.swing.JButton jButtonPrestamo;
     private javax.swing.JComboBox<String> jComboBoxCantones;
+    private javax.swing.JComboBox<String> jComboBoxDistritos;
     private javax.swing.JComboBox<String> jComboBoxProvincias;
     private javax.swing.JLabel jLabelCanton;
     private javax.swing.JLabel jLabelCedula;

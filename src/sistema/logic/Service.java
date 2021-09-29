@@ -48,7 +48,7 @@ public class Service {
         return data.getCantones();       
     }
      
-    public List<Distrito> dsitritoAll(){
+    public List<Distrito> distritoAll(){
         return data.getDistritos();       
     }
      
@@ -60,7 +60,7 @@ public class Service {
    
     public Service() {
         try{
-            data = XmlPersister.instance().load("Provincias.xml"); // carga datos del Xml
+            data = XmlPersister.instance().load("prestamos.xml"); // carga datos del Xml
         }
         catch(Exception e){
             data =  new Data(); //opcion de agregar datos si no hay

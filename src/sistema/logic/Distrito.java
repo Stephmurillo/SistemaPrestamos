@@ -19,6 +19,16 @@ public class Distrito {
     @XmlID
     String numero;
     String nombre;
+
+    public Distrito(String numero, String nombre) {
+        this.numero = numero;
+        this.nombre = nombre;
+    }
+    
+    public Distrito() {
+        this.numero = "";
+        this.nombre = "";
+    }
     
     public String getNumero(){
         return this.numero;
@@ -59,8 +69,13 @@ public class Distrito {
             return false;
         }
         final Distrito other = (Distrito) obj;
+        if (!Objects.equals(this.numero, other.numero)) {
+            return false;
+        }
         return true;
     }
+
+
     
     
 }
