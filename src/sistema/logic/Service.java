@@ -58,6 +58,10 @@ public class Service {
         else throw new Exception("Cliente ya existe");     
     }   
    
+    public List<String> toStringCantones(){return data.toStringCantones();}
+    
+    public List<String> toStringDistrito(){return data.toStringDistritos();}
+    
     public Service() {
         try{
             data = XmlPersister.instance().load("prestamos.xml"); // carga datos del Xml

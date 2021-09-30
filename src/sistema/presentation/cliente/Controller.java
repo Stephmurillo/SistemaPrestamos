@@ -1,5 +1,6 @@
 package sistema.presentation.cliente;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -51,4 +52,15 @@ public class Controller {
         }
     }
     
+    public void clienteAdd(Cliente cliente){
+        try {
+            Service.instance().clienteAdd(cliente);
+            model.setCliente(new Cliente("","",null, null, null));
+            model.setClientes(Arrays.asList(cliente));
+            model.commit();
+        } catch (Exception ex) {
+            
+        }
+        
+    }
 }

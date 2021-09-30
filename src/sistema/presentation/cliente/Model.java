@@ -70,6 +70,22 @@ public class Model extends Observable{
         this.clientes = clientes;
     }
     
+    public void setListaCantones(List<Canton> listaCombo) {
+        this.cantones = listaCombo;
+    }
+
+    public List<Canton> getListaComboA() {
+        return cantones;
+    }
+
+    public void setListaDistritos(List<Canton> listaCombo) {
+        this.cantones = listaCombo;
+    }
+
+    public List<Distrito> getListaComboD() {
+        return distritos;
+    }
+    
     @Override
     public synchronized void addObserver(Observer o) {
         super.addObserver(o); 
