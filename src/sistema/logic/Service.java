@@ -57,10 +57,6 @@ public class Service {
         if (old==null) data.getClientes().add(cliente);
         else throw new Exception("Cliente ya existe");     
     }   
-   
-    public List<String> toStringCantones(){return data.toStringCantones();}
-    
-    public List<String> toStringDistrito(){return data.toStringDistritos();}
     
     public Service() {
         try{

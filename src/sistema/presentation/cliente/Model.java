@@ -1,14 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sistema.presentation.cliente;
-
-/**
- *
- * @author muril
- */
 
 import java.util.List;
 import java.util.Observable;
@@ -19,9 +9,6 @@ import sistema.logic.Distrito;
 import sistema.logic.Provincia;
 
 public class Model extends Observable{
-    
-    // Model attributes here
-    // Model gets and sets here
     
     Cliente cliente;
     List<Cliente> clientes; 
@@ -68,22 +55,6 @@ public class Model extends Observable{
 
     public void setClientes(List<Cliente> clientes) {
         this.clientes = clientes;
-    }
-    
-    public void setListaCantones(List<Canton> listaCombo) {
-        this.cantones = listaCombo;
-    }
-
-    public List<Canton> getListaComboA() {
-        return cantones;
-    }
-
-    public void setListaDistritos(List<Canton> listaCombo) {
-        this.cantones = listaCombo;
-    }
-
-    public List<Distrito> getListaComboD() {
-        return distritos;
     }
     
     @Override

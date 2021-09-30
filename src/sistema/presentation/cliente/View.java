@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sistema.presentation.cliente;
 
+import java.util.List;
 import java.util.Observable;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -13,10 +9,6 @@ import sistema.logic.Cliente;
 import sistema.logic.Distrito;
 import sistema.logic.Provincia;
 
-/**
- *
- * @author muril
- */
 public class View extends javax.swing.JFrame implements java.util.Observer{
 
     Controller controller;
@@ -42,6 +34,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
     @Override
     public void update(Observable o, Object arg) {
         cliente = model.getCliente();
+        provincias = model.getProvincias();
         cedula.setText(cliente.getCedula());
         nombre.setText(cliente.getNombre());
         if (cliente.getCedula().isEmpty()) {
@@ -92,6 +85,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jLabelCedula.setText("Cedula");
 
@@ -339,20 +337,53 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
         controller.clienteAdd(new Cliente(cedula.getText(), nombre.getText(),(Provincia) jComboBoxProvincias.getSelectedItem(), (Canton)jComboBoxCantones.getSelectedItem(), (Distrito)jComboBoxDistritos.getSelectedItem()));
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        int sizeP = provincias.size();
+        for(int i = 0; i < sizeP; i++){
+            provin = provincias.get(i);
+            jComboBoxProvincias.addItem(provin.toString());
+        }
+        
+        provin = provincias.get(0);
+        int sizeC = provin.getCantones().size();
+        jComboBoxCantones.removeAllItems();
+        for(int i = 0; i < sizeC; i++){
+            canton = provin.getCantones().get(i);
+            jComboBoxCantones.addItem(canton.toString());
+        }
+        
+        canton = provin.getCantones().get(0);
+        int sizeD = canton.getDistritos().size();
+        jComboBoxDistritos.removeAllItems();
+        for(int i = 0; i < sizeD; i++){
+            distrito = canton.getDistritos().get(i);
+            jComboBoxDistritos.addItem(distrito.toString());
+        }
+    }//GEN-LAST:event_formWindowActivated
+
     public static void main(String[] args) {
-        // TODO code application logic here
-      View ventana = new View();
-      ventana.setVisible(true);
+        View ventana = new View();
+        ventana.setVisible(true);
     }
     
     private String MESSAGE;
     public int provincia;
+    
     Cliente cliente;
+    Provincia provin;
+    Canton canton;
+    Distrito distrito;
+    
+    List<Provincia> provincias;
+    List<Canton> cantones;
+    List<Distrito> distritos;
+    
     int x;
     int y;
     String[] imagenes = {"0.jpg", "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg"};
     int[] xCrd = {101, 129, 89, 124, 134, 171, 125, 142, 29, 74, 158, 201, 63, 91, 143, 170, 175, 206};
     int[] yCrd = {84, 106, 20, 85, 84, 105, 37, 70, 18, 85, 124, 180, 71, 108, 35, 79, 86, 123};
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cedula;
     private javax.swing.JLabel flag;

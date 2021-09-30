@@ -1,14 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sistema.data;
-
-/**
- *
- * @author muril
- */
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,15 +22,7 @@ public class Data {
         clientes = new ArrayList<>();    
         provincias = new ArrayList<>();   
     }
-
-    public List<Provincia> getProvincias() {
-        return provincias;
-    }
-
-    public void setProvincias(List<Provincia> provincias) {
-        this.provincias = provincias;
-    }
-
+    
     public List<Cliente> getClientes() {
         return clientes;
     }
@@ -48,7 +30,15 @@ public class Data {
     public void setClientes(List<Cliente> clientes) {
         this.clientes = clientes;
     }
+    
+    public List<Provincia> getProvincias() {
+        return provincias;
+    }
 
+    public void setProvincias(List<Provincia> provincias) {
+        this.provincias = provincias;
+    }
+    
     public List<Canton> getCantones() {
         return cantones;
     }
@@ -63,23 +53,5 @@ public class Data {
 
     public void setDistritos(List<Distrito> distritos) {
         this.distritos = distritos;
-    }
-
-    public List<String> toStringCantones() {
-        List<String> lista = new ArrayList<>();
-        int size = cantones.size();
-        for (int i = 0; i < size; i++) {
-            lista.add(cantones.get(i).toString());
-        }
-        return lista;
-    }
-
-    public List<String> toStringDistritos() {
-        List<String> lista = new ArrayList<>();
-        int size = distritos.size();
-        for (int i = 0; i < size; i++) {
-            lista.add(distritos.get(i).toString());
-        }
-        return lista;
     }
 }
