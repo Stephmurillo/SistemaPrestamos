@@ -1,6 +1,4 @@
-
 package sistema.logic;
-
 
 import java.util.List;
 import java.util.Objects;
@@ -8,11 +6,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
-
-/**
- *
- * @author muril
- */
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Provincia {
@@ -39,6 +32,7 @@ public class Provincia {
         this.nombre  = nom;
     }
     
+    @Override
     public String toString() {
         return nombre;
     }
