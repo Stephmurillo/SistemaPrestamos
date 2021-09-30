@@ -121,6 +121,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
         });
 
         jComboBoxProvincias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
+        jComboBoxProvincias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBoxProvinciasMouseClicked(evt);
+            }
+        });
         jComboBoxProvincias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxProvinciasActionPerformed(evt);
@@ -302,12 +307,20 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
             } else {
                 this.flag.setText(MESSAGE);
             }  
+        } else if (x <= xCrd[1] || x >= xCrd[15] || y <= yCrd[1] || y >= yCrd[15]){
+            provincia = Integer.valueOf(cliente.getProvincia().getNumero());
+            ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.provincia));
+            if (imageIcon != null) {
+                this.flag.setIcon(imageIcon);
+            } else {
+                this.flag.setText(MESSAGE);
+            }
         }
     }//GEN-LAST:event_flagMouseMoved
 
     private void flagMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flagMouseExited
-        ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[this.provincia]));
-        this.flag.setIcon(imageIcon);
+            ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[this.provincia]));
+            this.flag.setIcon(imageIcon);
     }//GEN-LAST:event_flagMouseExited
 
     private void flagMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flagMouseClicked
@@ -326,13 +339,13 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
     }//GEN-LAST:event_flagMouseClicked
 
     private void jComboBoxProvinciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxProvinciasActionPerformed
-   
+        // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxProvinciasActionPerformed
 
     private void jComboBoxCantonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCantonesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxCantonesActionPerformed
-
+	
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         controller.clienteAdd(new Cliente(cedula.getText(), nombre.getText(),(Provincia) jComboBoxProvincias.getSelectedItem(), (Canton)jComboBoxCantones.getSelectedItem(), (Distrito)jComboBoxDistritos.getSelectedItem()));
     }//GEN-LAST:event_jButtonGuardarActionPerformed
@@ -360,6 +373,10 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
             jComboBoxDistritos.addItem(distrito.toString());
         }
     }//GEN-LAST:event_formWindowActivated
+
+    private void jComboBoxProvinciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxProvinciasMouseClicked
+        provincia = (int) jComboBoxProvincias.getSelectedItem();
+    }//GEN-LAST:event_jComboBoxProvinciasMouseClicked
 
     public static void main(String[] args) {
         View ventana = new View();
