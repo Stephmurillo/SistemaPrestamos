@@ -330,16 +330,17 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
             ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[this.provincia]));
             this.flag.setIcon(imageIcon);
             cliente.setProvincia((Provincia)jComboBoxProvincias.getSelectedItem());
+            
             jComboBoxCantones.setModel(new DefaultComboBoxModel(cliente.getProvincia().getCantones().toArray()));
             jComboBoxCantones.setSelectedItem(jComboBoxDistritos.getSelectedItem());
             cliente.setCanton((Canton)jComboBoxCantones.getSelectedItem());
+            
             jComboBoxDistritos.setModel(new DefaultComboBoxModel(cliente.getCanton().getDistritos().toArray()));
-            jComboBoxDistritos.setSelectedItem(jComboBoxDistritos.getSelectedItem());
         }
     }//GEN-LAST:event_flagMouseClicked
 
     private void jComboBoxProvinciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxProvinciasActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jComboBoxProvinciasActionPerformed
 
     private void jComboBoxCantonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCantonesActionPerformed
@@ -385,6 +386,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
     
     private String MESSAGE;
     public int provincia;
+    public int can;
     
     Cliente cliente;
     Provincia provin;

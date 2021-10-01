@@ -26,9 +26,6 @@ public class Controller {
         this.view.setVisible(true);
     }
     
-    // Controller methods that respond to View events
-    // probably invoke methods from Service,
-    // and set data to Model, which in turn causes the View to update 
    public void consultar(String cedula){
       Cliente cliente;
         try {
