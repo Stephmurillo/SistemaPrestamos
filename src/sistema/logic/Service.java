@@ -58,6 +58,14 @@ public class Service {
         else throw new Exception("Cliente ya existe");     
     }   
     
+    
+      public void store(){
+        try {
+            XmlPersister.instance().store(data, "prestamos.xml" );
+        } catch (Exception ex) {
+        }
+    }
+      
     public Service() {
         try{
             data = XmlPersister.instance().load("prestamos.xml"); // carga datos del Xml

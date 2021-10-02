@@ -8,6 +8,7 @@ import sistema.logic.Canton;
 import sistema.logic.Cliente;
 import sistema.logic.Distrito;
 import sistema.logic.Provincia;
+import sistema.logic.Service;
 
 public class View extends javax.swing.JFrame implements java.util.Observer{
 
@@ -34,11 +35,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
     @Override
     public void update(Observable o, Object arg) {
         cliente = model.getCliente();
-        provincias = model.getProvincias();
         cedula.setText(cliente.getCedula());
         nombre.setText(cliente.getNombre());
         if (cliente.getCedula().isEmpty()) {
             this.provincia = 0;
+            jButtonPrestamo.setEnabled(false);
         }
         else {
         jTextFieldProvincia.setText(cliente.getProvincia().getNombre());
@@ -138,12 +139,6 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
         jButtonPrestamo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/prestamoIcon.png"))); // NOI18N
         jButtonPrestamo.setEnabled(false);
 
-        jTextFieldProvincia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldProvinciaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -229,7 +224,9 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
 
     private void jButtonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarActionPerformed
         controller.clienteGet(cedula.getText());
-        jButtonPrestamo.setEnabled(true);
+        if(!"".equals(nombre.getText())){
+            jButtonPrestamo.setEnabled(true);
+        }
     }//GEN-LAST:event_jButtonConsultarActionPerformed
 
     private void flagMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flagMouseMoved
@@ -323,15 +320,12 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
     private void jComboBoxCantonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCantonesActionPerformed
         Canton c = (Canton) jComboBoxCantones.getModel().getSelectedItem();
         jComboBoxDistritos.setModel(new DefaultComboBoxModel(c.getDistritos().toArray()));
+        cliente.setDistrito((Distrito)jComboBoxDistritos.getSelectedItem());
     }//GEN-LAST:event_jComboBoxCantonesActionPerformed
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-        controller.clienteAdd(new Cliente(cedula.getText(), nombre.getText(),provin , (Canton)jComboBoxCantones.getSelectedItem(), (Distrito)jComboBoxDistritos.getSelectedItem()));
+        controller.clienteAdd(new Cliente(cedula.getText(), nombre.getText(), provin , (Canton)jComboBoxCantones.getSelectedItem(), (Distrito)jComboBoxDistritos.getSelectedItem()));
     }//GEN-LAST:event_jButtonGuardarActionPerformed
-
-    private void jTextFieldProvinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldProvinciaActionPerformed
-        
-    }//GEN-LAST:event_jTextFieldProvinciaActionPerformed
 
     public static void main(String[] args) {
         View ventana = new View();
@@ -343,12 +337,6 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
     
     Cliente cliente;
     Provincia provin;
-    Canton canton;
-    Distrito distrito;
-    
-    List<Provincia> provincias;
-    List<Canton> cantones;
-    List<Distrito> distritos;
     
     int x;
     int y;
