@@ -358,13 +358,13 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
             jComboBoxCantones.setSelectedIndex(-1);
         } else if("".equals(cedula.getText()) || "".equals(nombre.getText()) || provin == null || jComboBoxCantones.getSelectedItem() == null || jComboBoxDistritos.getSelectedItem() == null) {
             jLabelDont.setText("Complete todos los campos!");}
-        else if(controller.clienteGet(cedula.getText()) != null){
-            Cliente clien = controller.clienteGet(cedula.getText());
-            clien.setNombre(nombre.getText());
-            clien.setProvincia(provin);
-            clien.setCanton((Canton)jComboBoxCantones.getSelectedItem());
-            clien.setDistrito((Distrito)jComboBoxDistritos.getSelectedItem());
-        }
+//        else if(controller.clienteGet(cedula.getText()) != null){
+//            Cliente clien = controller.clienteGet(cedula.getText());
+//            clien.setNombre(nombre.getText());
+//            clien.setProvincia(provin);
+//            clien.setCanton((Canton)jComboBoxCantones.getSelectedItem());
+//            clien.setDistrito((Distrito)jComboBoxDistritos.getSelectedItem());
+//        }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jTextFieldProvinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldProvinciaActionPerformed
