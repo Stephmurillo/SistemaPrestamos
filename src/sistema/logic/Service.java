@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sistema.logic;
 
+import java.util.ArrayList;
 import java.util.List;
 import sistema.data.Data;
 import sistema.data.XmlPersister;
 
-/**
- *
- * @author muril
- */
 public class Service {
    
     private static Service Instancia;
@@ -33,7 +25,7 @@ public class Service {
     public Cliente clienteGet(String cedula) throws Exception{
         Cliente result = data.getClientes().stream().filter(c->c.getCedula().equals(cedula)).findFirst().orElse(null);
         if (result != null) return result;
-        else throw new Exception("Cliente no existe");   
+        else throw new Exception("Cliente no existe.");   
     }
     
      public List<Cliente> clienteAll(){

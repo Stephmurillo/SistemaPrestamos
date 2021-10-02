@@ -1,9 +1,6 @@
 package sistema.presentation.cliente;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import sistema.logic.Cliente;
 import sistema.logic.Service;
 
@@ -38,15 +35,18 @@ public class Controller {
         }
    }
    
-    public void clienteGet(String cedula){
+    public Cliente clienteGet(String cedula){
+        Cliente cliente = new Cliente();
         try {
-            Cliente cliente = Service.instance().clienteGet(cedula);
+            cliente = Service.instance().clienteGet(cedula);
             model.setCliente(cliente);
             model.commit();
+            return cliente;
         } catch (Exception ex) {
             model.setCliente(new Cliente());
             model.commit();
         }
+        return null;
     }
     
     public void clienteAdd(Cliente cliente){

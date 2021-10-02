@@ -67,7 +67,6 @@ public class Model extends Observable{
         this.setChanged();
         this.notifyObservers();
     }
-    
 }
 
 
