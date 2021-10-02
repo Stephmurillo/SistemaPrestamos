@@ -1,18 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/* @authors 
+    - Yoselin Rojas | Grupo 04 
+    - Stephanny Murillo | Grupo 03
+*/
+
 package sistema;
 
 import sistema.presentation.cliente.Controller;
 import sistema.presentation.cliente.Model;
 import sistema.presentation.cliente.View;
 
-/**
- *
- * @author muril
- */
 public class Application {
 
     public static void main(String[] args) {
