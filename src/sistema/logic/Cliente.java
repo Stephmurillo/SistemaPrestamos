@@ -17,6 +17,7 @@ public class Cliente {
     Canton canton;
     @XmlIDREF
     Distrito distrito;
+    
 
     public Cliente() {
         this.provincia = new Provincia();

@@ -32,6 +32,10 @@ public class Service {
         return data.getClientes();       
     }
      
+     public List<Prestamo> prestamoAll(){
+        return data.getPrestamos();       
+    }
+     
      public List<Provincia> provinciaAll(){
         return data.getProvincias();       
     }
@@ -50,6 +54,11 @@ public class Service {
         else throw new Exception("Cliente ya existe");     
     }   
     
+    public void prestamoAdd(Prestamo prestamo) throws Exception{
+        Prestamo old=data.getPrestamos().stream().filter(c->c.getCodigo().equals(prestamo.getCodigo())).findFirst().orElse(null);
+        if (old==null) data.getPrestamos().add(prestamo);
+        else throw new Exception("Prestamo ya existe");     
+    } 
     
       public void store(){
         try {
