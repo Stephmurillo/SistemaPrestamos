@@ -1,14 +1,15 @@
 package sistema.presentation.cliente;
 
 import java.util.Arrays;
+import sistema.Application;
 import sistema.logic.Cliente;
 import sistema.logic.Service;
 
 public class Controller {
     Model model;
-    View view;
+    ViewCliente view;
 
-    public Controller(Model model, View view) {
+    public Controller(Model model, ViewCliente view) {
         this.model = model;
         this.view = view;
         model.setProvincias(Service.instance().provinciaAll());
@@ -19,8 +20,16 @@ public class Controller {
         view.setController(this);
     }
     
-    public void show(){
+     public void show(){
         this.view.setVisible(true);
+    }
+    
+    public void hide(){
+        this.view.setVisible(false);
+    }
+    
+    public void exit(){
+        Service.instance().store();
     }
     
    public void consultar(String cedula){
@@ -59,4 +68,9 @@ public class Controller {
             
         }
     }
+    
+    public void prestamosShow(){
+        this.hide();
+        Application.PRESTAMOS.show();
+    }  
 }
