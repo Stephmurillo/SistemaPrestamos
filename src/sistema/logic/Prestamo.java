@@ -74,7 +74,7 @@ public class Prestamo {
 	    for(int i=0;i<plazo;i++){
 	    	 interes = saldo * tasa/100;
 	    	 amortizacion = cuota - interes;
-                 m = new Mensualidad(i+1,saldo,interes, amortizacion);
+                 m = new Mensualidad("i+1",saldo,interes, amortizacion);
                  resultado.add(m);
                  saldo = saldo - amortizacion;                 
             }
