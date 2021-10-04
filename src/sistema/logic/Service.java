@@ -1,6 +1,5 @@
 package sistema.logic;
 
-import java.util.ArrayList;
 import java.util.List;
 import sistema.data.Data;
 import sistema.data.XmlPersister;
@@ -36,6 +35,10 @@ public class Service {
         return data.getPrestamos();       
     }
      
+      public List<Mensualidad> mensualidadAll(){
+        return data.getMensualidades();       
+    }
+     
      public List<Provincia> provinciaAll(){
         return data.getProvincias();       
     }
@@ -58,6 +61,12 @@ public class Service {
         Prestamo old=data.getPrestamos().stream().filter(c->c.getCodigo().equals(prestamo.getCodigo())).findFirst().orElse(null);
         if (old==null) data.getPrestamos().add(prestamo);
         else throw new Exception("Prestamo ya existe");     
+    } 
+    
+    public void mensualidadAdd(Mensualidad mensualidad) throws Exception{
+        Mensualidad old = data.getMensualidades().stream().filter(c->c.getNumero().equals(mensualidad.getNumero())).findFirst().orElse(null);
+        if (old==null) data.getMensualidades().add(mensualidad);
+        else throw new Exception("Mensualidad ya existe");     
     } 
     
       public void store(){
