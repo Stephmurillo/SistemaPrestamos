@@ -32,4 +32,25 @@ public class Controller {
             
         }
     }
+    
+    public void prestamoGet(String numero){
+        try {
+            Prestamo prestamo = Service.instance().prestamoGet(numero);
+            model.setPrestamo(prestamo);
+            model.setPrestamos(Arrays.asList(prestamo));
+            model.commit();
+        } catch (Exception ex) {
+            model.setPrestamo(new Prestamo());
+            model.setPrestamos(new ArrayList<>());
+            model.commit();
+        }
+    }
+    
+    public void prestamoEdit(int row){
+        Prestamo prestamo = model.getPrestamos().get(row);
+        model.setPrestamo(prestamo);
+        model.commit();
+    }
+    
+    
 }

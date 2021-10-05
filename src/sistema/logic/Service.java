@@ -69,6 +69,12 @@ public class Service {
         else throw new Exception("Mensualidad ya existe");     
     } 
     
+    public Prestamo prestamoGet(String numero) throws Exception{
+        Prestamo result=data.getPrestamos().stream().filter(f->f.getCodigo().equals(numero)).findFirst().orElse(null);
+        if (result!=null) return result;
+        else throw new Exception("Prestamo no existe");   
+    }
+    
       public void store(){
         try {
             XmlPersister.instance().store(data, "prestamos.xml" );
