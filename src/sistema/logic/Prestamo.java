@@ -4,21 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Prestamo {
-	private double monto;
+        private String codigo;
+        private double monto;
 	private double tasa;
 	private double plazo;
 
-	public Prestamo(double m, double t, double p){
-		monto=m;
-		tasa=t;
-		plazo=p;
+	public Prestamo(String cod, double m, double t, double p){
+	    this.codigo = cod;
+            this.monto = m;
+            this.tasa = t;
+            this.plazo = p;
 	}
 
 	public Prestamo(){
+            this.codigo = "000";
+            this.monto = 0;
+            this.tasa = 0;
+            this.plazo = 0;
 	}
 
+        public String getCodigo(){
+		return this.codigo;
+	}
+        
 	public double getMonto(){
-		return monto;
+		return this.monto;
 	}
 
 	public void setMonto(double monto){
@@ -26,7 +36,7 @@ public class Prestamo {
 	}
 
 	public double getTasa(){
-		return tasa;
+		return this.tasa;
 	}
 
 	public void setTasa(double tasa){
@@ -43,7 +53,7 @@ public class Prestamo {
 
 	public double getCuota(){
 		double cuota;
-		cuota   = monto * tasa/100 /(1-Math.pow(1+tasa/100,-plazo));
+		cuota   = monto * tasa/100 /(1-Math.pow(1 + this.tasa/100, -this.plazo));
 		return cuota;
 	}
 
@@ -55,16 +65,16 @@ public class Prestamo {
 
 	public List<Mensualidad> getMensualidades(){
             Mensualidad m;
-            double cuota=this.getCuota();
-            double saldo=monto;
-            double interes=0;
-            double amortizacion=0;
+            double cuota = this.getCuota();
+            double saldo = monto;
+            double interes = 0;
+            double amortizacion = 0;
             ArrayList<Mensualidad> resultado = new ArrayList<>();
 
 	    for(int i=0;i<plazo;i++){
 	    	 interes = saldo * tasa/100;
 	    	 amortizacion = cuota - interes;
-                 m = new Mensualidad(i+1,saldo,interes, amortizacion);
+                 m = new Mensualidad("i+1",saldo,interes, amortizacion);
                  resultado.add(m);
                  saldo = saldo - amortizacion;                 
             }

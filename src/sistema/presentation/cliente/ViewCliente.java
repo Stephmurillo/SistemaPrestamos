@@ -9,7 +9,7 @@ import sistema.logic.Cliente;
 import sistema.logic.Distrito;
 import sistema.logic.Provincia;
 
-public class View extends javax.swing.JFrame implements java.util.Observer{
+public class ViewCliente extends javax.swing.JFrame implements java.util.Observer{
 
     Controller controller;
     Model model;
@@ -52,7 +52,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
         }
     }
     
-    public View() {
+    public ViewCliente() {
         initComponents();
         this.flag.setText("");
         this.MESSAGE = "No existe ninguna imagen que pueda ser mostrada...";
@@ -133,10 +133,9 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
 
         jButtonPrestamo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/prestamoIcon.png"))); // NOI18N
         jButtonPrestamo.setEnabled(false);
-
-        jTextFieldProvincia.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPrestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldProvinciaActionPerformed(evt);
+                jButtonPrestamoActionPerformed(evt);
             }
         });
 
@@ -372,8 +371,12 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
         
     }//GEN-LAST:event_jTextFieldProvinciaActionPerformed
 
+    private void jButtonPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrestamoActionPerformed
+        controller.prestamosShow();
+    }//GEN-LAST:event_jButtonPrestamoActionPerformed
+
     public static void main(String[] args) {
-        View ventana = new View();
+        ViewCliente ventana = new ViewCliente();
         ventana.setVisible(true);
     }
     

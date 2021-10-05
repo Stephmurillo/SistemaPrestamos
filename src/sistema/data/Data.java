@@ -5,10 +5,13 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import sistema.logic.Canton;
 import sistema.logic.Cliente;
-import sistema.logic.Distrito;
+import sistema.logic.Prestamo;
 import sistema.logic.Provincia;
+import sistema.logic.Canton;
+import sistema.logic.Distrito;
+import sistema.logic.Mensualidad;
+
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -17,6 +20,8 @@ public class Data {
     private List<Provincia> provincias;
     private List<Canton> cantones;
     private List<Distrito> distritos;
+    private List<Prestamo> prestamos;
+     private List<Mensualidad> mensualidades;
 
     public Data() {
         clientes = new ArrayList<>();    
@@ -29,6 +34,22 @@ public class Data {
 
     public void setClientes(List<Cliente> clientes) {
         this.clientes = clientes;
+    }
+    
+    public void setPrestamos(List<Prestamo> prestamos) {
+        this.prestamos = prestamos;
+    }
+
+    public List<Prestamo> getPrestamos() {
+        return prestamos;
+    }
+    
+    public void setMensualidades(List<Mensualidad> mensualidades) {
+        this.mensualidades = mensualidades;
+    }
+
+    public List<Mensualidad> getMensualidades() {
+        return mensualidades;
     }
     
     public List<Provincia> getProvincias() {

@@ -1,19 +1,26 @@
 package sistema.logic;
 
 public class Mensualidad {
-        int numero;
+        String numero;
     	double saldo;
 	double interes;
 	double amortizacion;
 
-	public Mensualidad (int n, double s,double i,double a){
+	public Mensualidad (String n, double s,double i,double a){
                 numero = n;
 		saldo = s;            
 		interes = i;
 		amortizacion = a;
 	}
 
-        public int getNumero() {
+        public Mensualidad (){
+                numero = "0";
+		saldo = 0;            
+		interes = 0;
+		amortizacion = 0;
+	}
+        
+        public String getNumero() {
             return numero;
         }
 	public double getSaldo(){
