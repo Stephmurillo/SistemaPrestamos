@@ -10,7 +10,7 @@ public class Model extends Observable{
     
     Prestamo prestamo;
     List<Prestamo> prestamos;
-    List<Cliente> clientes;
+   Cliente cliente;
 
     public List<Prestamo> getPrestamos() {
         return prestamos;
@@ -28,12 +28,12 @@ public class Model extends Observable{
         this.prestamo = prestamo;
     }
 
-   public List<Cliente> getClientes() {
-        return clientes;
+   public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setClientes(List<Cliente> clientes) {
-        this.clientes = clientes;
+    public void setCliente(Cliente clientes) {
+        this.cliente = cliente;
     }
     
     @Override
