@@ -249,6 +249,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
         } else {
             jButtonPrestamo.setEnabled(true);
         }
+        //TODO HACER MANEJO DE EXCEPCIONES.
     }//GEN-LAST:event_jButtonConsultarActionPerformed
 
     private void flagMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flagMouseMoved
