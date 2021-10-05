@@ -7,7 +7,6 @@ package sistema.presentation.prestamos;
 
 import java.util.ArrayList;
 import java.util.Observable;
-import javax.swing.DefaultComboBoxModel;
 import sistema.logic.Prestamo;
 import sistema.presentation.prestamos.Controller;
 import sistema.presentation.prestamos.Model;
@@ -40,8 +39,7 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
     
     @Override
     public void update(Observable o, Object arg) {
-        jTablePrestamosC.setModel(new PrestamosJTableModel((ArrayList<Prestamo>) model.getPrestamos()));
-        
+        jTablePrestamosC.setModel(new PrestamosJTableModel((ArrayList<Prestamo>) model.getPrestamos()));   
     }
     /**
      * Creates new form ViewPrestamo
@@ -106,7 +104,12 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
             }
         });
 
-        jButtonAnadir.setText("jButton1");
+        jButtonAnadir.setText("Agregar");
+        jButtonAnadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAnadirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -171,6 +174,10 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
     private void jTextFieldPlazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPlazoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldPlazoActionPerformed
+
+    private void jButtonAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnadirActionPerformed
+        controller.prestamoAdd(new Prestamo(jTextFieldCodigo.getText(),Integer.parseInt(jTextFieldMonto.getText()),Integer.parseInt(jTextFieldPlazo.getText()),Integer.parseInt(jTextFieldTasa.getText()))); 
+    }//GEN-LAST:event_jButtonAnadirActionPerformed
 
     /**
      * @param args the command line arguments
