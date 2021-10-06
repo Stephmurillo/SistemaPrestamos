@@ -39,10 +39,6 @@ public class Cliente {
         return cedula;
     }
 
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -74,6 +70,14 @@ public class Cliente {
     public void setDistrito(Distrito distrito) {
         this.distrito = distrito;
     }
+
+    public List<Prestamo> getPrestamos() {
+        return prestamos;
+    }
+
+    public void setPrestamos(List<Prestamo> prestamos) {
+        this.prestamos = prestamos;
+    }
     
     @Override
     public int hashCode() {
@@ -98,6 +102,10 @@ public class Cliente {
             return false;
         }
         return true;
+    }
+
+    public List<Prestamo> setPrestamos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

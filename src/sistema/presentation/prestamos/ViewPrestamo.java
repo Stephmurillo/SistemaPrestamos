@@ -176,7 +176,7 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
     }//GEN-LAST:event_jTextFieldPlazoActionPerformed
 
     private void jButtonAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnadirActionPerformed
-        controller.prestamoAdd(new Prestamo(jTextFieldCodigo.getText(),Integer.parseInt(jTextFieldMonto.getText()),Integer.parseInt(jTextFieldPlazo.getText()),Integer.parseInt(jTextFieldTasa.getText()))); 
+        controller.prestamoAdd(new Prestamo(jTextFieldCodigo.getText(),Double.parseDouble(jTextFieldMonto.getText()),Double.parseDouble(jTextFieldPlazo.getText()),Double.parseDouble(jTextFieldTasa.getText()))); 
     }//GEN-LAST:event_jButtonAnadirActionPerformed
 
     /**

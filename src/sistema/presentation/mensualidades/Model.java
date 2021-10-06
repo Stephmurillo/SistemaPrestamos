@@ -1,5 +1,6 @@
 package sistema.presentation.mensualidades;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -10,6 +11,12 @@ public class Model extends Observable{
     Mensualidad mensualidad;
     List<Mensualidad> mensualidades;
 
+    public Model(){
+     mensualidades = new ArrayList<>();
+     mensualidad = new Mensualidad();
+     }
+   
+    
     public List<Mensualidad> getMensualidades() {
         return mensualidades;
     }

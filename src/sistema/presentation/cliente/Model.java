@@ -1,5 +1,6 @@
 package sistema.presentation.cliente;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -15,6 +16,15 @@ public class Model extends Observable{
     List<Provincia> provincias;
     List<Canton> cantones;
     List<Distrito> distritos;
+    
+    public Model(){
+     cliente = new Cliente();
+     clientes = new ArrayList<>();
+     provincias = new ArrayList<>();
+     cantones = new ArrayList<>();
+     distritos = new ArrayList<>();
+     }
+   
     
     public List<Provincia> getProvincias() {
         return provincias;
