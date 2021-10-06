@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import sistema.Application;
+import static sistema.Application.MENSUALIDADES;
 import sistema.logic.Prestamo;
 import sistema.logic.Service;
 
@@ -61,7 +62,7 @@ public class Controller {
     
     public void mensualidadShow(){
         this.hide();
-        Application.PRESTAMOS.show();
+        Application.MENSUALIDADES.show();
     } 
     
     public void prestamoSearch(String codigo){
