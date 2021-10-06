@@ -11,7 +11,7 @@ public class MensualidadTableModel extends AbstractTableModel implements TableMo
     List<Mensualidad> rows;
 
     public  MensualidadTableModel(List<Mensualidad> rows){
-        this.rows=rows;
+        this.rows = rows;
     }
 
     @Override
