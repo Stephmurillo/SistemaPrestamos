@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 import sistema.logic.Canton;
 import sistema.logic.Cliente;
 import sistema.logic.Distrito;
-import sistema.logic.Prestamo;
 import sistema.logic.Provincia;
 
 public class ViewCliente extends javax.swing.JFrame implements java.util.Observer{
@@ -249,7 +248,6 @@ public class ViewCliente extends javax.swing.JFrame implements java.util.Observe
         } else {
             jButtonPrestamo.setEnabled(true);
         }
-        //TODO HACER MANEJO DE EXCEPCIONES.
     }//GEN-LAST:event_jButtonConsultarActionPerformed
 
     private void flagMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flagMouseMoved
@@ -346,29 +344,26 @@ public class ViewCliente extends javax.swing.JFrame implements java.util.Observe
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         if(!"".equals(cedula.getText()) && !"".equals(nombre.getText()) && provin != null && jComboBoxCantones.getSelectedItem() != null && jComboBoxDistritos.getSelectedItem() != null){
-            if (controller.clienteGet(cedula.getText()) != null) {
-                Cliente clien = controller.clienteGet(cedula.getText());
-                clien.setNombre(nombre.getText());
-                clien.setProvincia(provin);
-                clien.setCanton((Canton) jComboBoxCantones.getSelectedItem());
-                clien.setDistrito((Distrito) jComboBoxDistritos.getSelectedItem());
-            }
-            else {
-                controller.clienteAdd(new Cliente(cedula.getText(), nombre.getText(), provin, (Canton) jComboBoxCantones.getSelectedItem(), (Distrito) jComboBoxDistritos.getSelectedItem()));
-            }
+            controller.clienteAdd(new Cliente(cedula.getText(), nombre.getText(), provin, (Canton)jComboBoxCantones.getSelectedItem(), (Distrito)jComboBoxDistritos.getSelectedItem()));
             cedula.setText("");
             nombre.setText("");
             jLabelDont.setText("");
             jButtonPrestamo.setEnabled(false);
             this.provincia = 0;
-            ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/" + this.imagenes[provincia]));
+            ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[provincia]));
             this.flag.setIcon(imageIcon);
             jTextFieldProvincia.setText("");
             jComboBoxDistritos.setSelectedIndex(-1);
             jComboBoxCantones.setSelectedIndex(-1);
         } else if("".equals(cedula.getText()) || "".equals(nombre.getText()) || provin == null || jComboBoxCantones.getSelectedItem() == null || jComboBoxDistritos.getSelectedItem() == null) {
-            jLabelDont.setText("Complete todos los campos!");
-        }
+            jLabelDont.setText("Complete todos los campos!");}
+//        else if(controller.clienteGet(cedula.getText()) != null){
+//            Cliente clien = controller.clienteGet(cedula.getText());
+//            clien.setNombre(nombre.getText());
+//            clien.setProvincia(provin);
+//            clien.setCanton((Canton)jComboBoxCantones.getSelectedItem());
+//            clien.setDistrito((Distrito)jComboBoxDistritos.getSelectedItem());
+//        }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jTextFieldProvinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldProvinciaActionPerformed
@@ -376,8 +371,10 @@ public class ViewCliente extends javax.swing.JFrame implements java.util.Observe
     }//GEN-LAST:event_jTextFieldProvinciaActionPerformed
 
     private void jButtonPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrestamoActionPerformed
-//        Model mod = new Model();
-//        mod.setCliente(model.getCliente());
+        sistema.presentation.prestamos.Model modelPrestamos =new sistema.presentation.prestamos.Model() ;
+        System.out.println(this.model.getCliente().getNombre());
+        modelPrestamos.setCliente(this.model.getCliente());
+        System.out.println(modelPrestamos.getCliente().getNombre() +"-> MODEL 2");
         controller.prestamosShow();
     }//GEN-LAST:event_jButtonPrestamoActionPerformed
 
@@ -386,7 +383,7 @@ public class ViewCliente extends javax.swing.JFrame implements java.util.Observe
         ventana.setVisible(true);
     }
     
-    private String MESSAGE;
+    private final String MESSAGE;
     public int provincia;
     public int provinciaSelected;
     

@@ -18,12 +18,13 @@ public class Model extends Observable{
     List<Distrito> distritos;
     
     public Model(){
-        cliente = new Cliente();
-        clientes = new ArrayList<>();
-        provincias = new ArrayList<>();
-        cantones = new ArrayList<>();
-        distritos = new ArrayList<>();
-    }
+     cliente = new Cliente();
+     clientes = new ArrayList<>();
+     provincias = new ArrayList<>();
+     cantones = new ArrayList<>();
+     distritos = new ArrayList<>();
+     }
+   
     
     public List<Provincia> getProvincias() {
         return provincias;

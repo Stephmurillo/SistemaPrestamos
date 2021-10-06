@@ -13,7 +13,7 @@ public class Application {
         sistema.presentation.cliente.Controller controllerClientes = new sistema.presentation.cliente.Controller(modelClientes,viewClientes);
         CLIENTES = controllerClientes;
         
-        sistema.presentation.prestamos.Model modelPrestamos=new sistema.presentation.prestamos.Model() ;
+        sistema.presentation.prestamos.Model modelPrestamos =new sistema.presentation.prestamos.Model() ;
         sistema.presentation.prestamos.ViewPrestamo viewPrestamo = new sistema.presentation.prestamos.ViewPrestamo();
         sistema.presentation.prestamos.Controller controllerPrestamos = new sistema.presentation.prestamos.Controller(modelPrestamos,viewPrestamo);
         PRESTAMOS = controllerPrestamos;       
