@@ -80,6 +80,7 @@ public class ViewCliente extends javax.swing.JFrame implements java.util.Observe
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CLIENTE");
+        setResizable(false);
 
         jLabelCedula.setText("Cedula");
 

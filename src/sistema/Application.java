@@ -18,9 +18,16 @@ public class Application {
         sistema.presentation.prestamos.Controller controllerPrestamos = new sistema.presentation.prestamos.Controller(modelPrestamos,viewPrestamo);
         PRESTAMOS = controllerPrestamos;       
         
+        sistema.presentation.mensualidades.Model modelMensualidades = new sistema.presentation.mensualidades.Model() ;
+        sistema.presentation.mensualidades.ViewMensualidad viewMensualidad = new sistema.presentation.mensualidades.ViewMensualidad();
+        sistema.presentation.mensualidades.Controller controllerMensualidades = new sistema.presentation.mensualidades.Controller(modelMensualidades, viewMensualidad);
+        MENSUALIDADES = controllerMensualidades;    
+        
         CLIENTES.show();
     }
 
     public static sistema.presentation.cliente.Controller CLIENTES;
     public static sistema.presentation.prestamos.Controller PRESTAMOS;
+    public static sistema.presentation.mensualidades.Controller MENSUALIDADES;
+    
     }
