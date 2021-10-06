@@ -8,6 +8,7 @@ public class Prestamo {
         private double monto;
 	private double tasa;
 	private double plazo;
+        ArrayList<Mensualidad> mensualidades = new ArrayList<>();
 
 	public Prestamo(String cod, double m, double t, double p){
 	    this.codigo = cod;
@@ -63,23 +64,27 @@ public class Prestamo {
 		return total;
 	}
 
-	public List<Mensualidad> getMensualidades(){
+	public ArrayList<Mensualidad> getMensualidades(){
             Mensualidad m;
             double cuota = this.getCuota();
             double saldo = monto;
             double interes = 0;
             double amortizacion = 0;
-            ArrayList<Mensualidad> resultado = new ArrayList<>();
+            Boolean estado = false;
 
-	    for(int i=0;i<plazo;i++){
-	    	 interes = saldo * tasa/100;
-	    	 amortizacion = cuota - interes;
-                 m = new Mensualidad("i+1",saldo,interes, amortizacion);
-                 resultado.add(m);
-                 saldo = saldo - amortizacion;                 
+	    for (int i = 0; i < plazo; i++) {
+                interes = saldo * tasa / 100;
+                amortizacion = cuota - interes;
+                m = new Mensualidad("i+1", saldo, interes, amortizacion, estado);
+                mensualidades.add(m);
+                saldo = saldo - amortizacion;
             }
-            return resultado;
+            return mensualidades;
 	}
+        
+        public void setMensualidades(ArrayList<Mensualidad> mensualidades){
+            this.mensualidades = mensualidades;
+        }
 
     @Override
     public String toString() {

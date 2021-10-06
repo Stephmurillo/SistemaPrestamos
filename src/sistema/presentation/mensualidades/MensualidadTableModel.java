@@ -6,29 +6,35 @@ import javax.swing.table.TableModel;
 import sistema.logic.Mensualidad;
 
 public class MensualidadTableModel extends AbstractTableModel implements TableModel {
-    String[] cols ={"Mensualidad","Saldo","Interés","Amortización" };
+    String[] cols ={"Mensualidad" ,"Saldo" ,"Interés" ,"Amortización" };
+    
     List<Mensualidad> rows;
 
     public  MensualidadTableModel(List<Mensualidad> rows){
-        this.rows=rows;
+        this.rows = rows;
     }
 
+    @Override
     public int getColumnCount() {
         return 4;
     }
 
+    @Override
     public String getColumnName(int col){
         return cols[col];
     }
 
+    @Override
     public int getRowCount() {
         return rows.size();
     }
     
+    @Override
     public Class<?> getColumnClass(int columnIndex){
         return Integer.class;
     }
     
+    @Override
     public Object getValueAt(int row, int col) {
         Mensualidad m = rows.get(row);
         java.text.DecimalFormat df = new java.text.DecimalFormat("####");

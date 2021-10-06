@@ -2,6 +2,7 @@ package sistema.presentation.prestamos;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import sistema.Application;
 import sistema.logic.Prestamo;
 import sistema.logic.Service;
 
@@ -20,6 +21,10 @@ public class Controller {
     
     public void show(){
         this.view.setVisible(true);
+    }
+    
+    public void hide(){
+        this.view.setVisible(false);
     }
     
     public void prestamoAdd(Prestamo prestamo){
@@ -52,5 +57,9 @@ public class Controller {
         model.commit();
     }
     
+    public void mensualidadShow(){
+        this.hide();
+        Application.PRESTAMOS.show();
+    } 
     
 }
