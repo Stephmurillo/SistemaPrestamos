@@ -3,6 +3,7 @@ package sistema.presentation.mensualidades;
 import java.util.ArrayList;
 import java.util.Arrays;
 import sistema.logic.Mensualidad;
+import sistema.logic.Prestamo;
 import sistema.logic.Service;
 
 public class Controller {
@@ -32,4 +33,27 @@ public class Controller {
             
         }
     }
+    
+    public void pago(int row){
+        Mensualidad mensualidad = model.getMensualidades().get(row);
+        if(mensualidad.getEstado() == false){
+            mensualidad.setEstado(true);
+        }
+        model.commit();
+    }
+    
+//     public Prestamo prestamoGet(String cedula){
+//        Prestamo prestamo = new Prestamo();
+//        try {
+//            prestamo = Service.instance().clienteGet(cedula);
+//            model.setCliente(prestamo);
+//            model.commit();
+//            return prestamo;
+//        } catch (Exception ex) {
+//            model.setPrestamo(new Prestamo());
+//            model.commit();
+//        }
+//        return null;
+//    }
+
 }

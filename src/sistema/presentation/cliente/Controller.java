@@ -69,6 +69,22 @@ public class Controller {
         }
     }
     
+    public void clienteEdit(Cliente cliente){
+        model.setCliente(cliente);
+        model.commit();
+    }
+    
+//    public void peliculaUpdate(Pelicula pelicula) {
+//        try {
+//            Service.instance().peliculaUpdate(pelicula);
+//            model.setPelicula(new Pelicula("", "", 0, null, null));
+//            model.setPeliculas(Arrays.asList(pelicula));
+//            model.commit();
+//        } catch (Exception ex) {
+//
+//        }
+//    }
+    
     public void prestamosShow(){
         this.hide();
         Application.PRESTAMOS.show();

@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import sistema.logic.Cliente;
 import sistema.logic.Mensualidad;
+import sistema.logic.Prestamo;
 
 public class Model extends Observable{
-    
+    Cliente cliente;
+    Prestamo prestamo;
     Mensualidad mensualidad;
     List<Mensualidad> mensualidades;
 
@@ -33,6 +36,22 @@ public class Model extends Observable{
         this.mensualidad = mensualidad;
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Prestamo getPrestamo() {
+        return prestamo;
+    }
+
+    public void setPrestamo(Prestamo prestamo) {
+        this.prestamo = prestamo;
+    }
+    
     @Override
     public synchronized void addObserver(Observer o) {
         super.addObserver(o); 
