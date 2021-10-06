@@ -1,5 +1,6 @@
 package sistema.presentation.prestamos;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -10,8 +11,14 @@ public class Model extends Observable{
     
     Prestamo prestamo;
     List<Prestamo> prestamos;
-   Cliente cliente;
+    Cliente cliente;
 
+    public Model(){
+        cliente = new Cliente();
+        prestamo = new Prestamo();
+        prestamos = new ArrayList<>();
+    }
+    
     public List<Prestamo> getPrestamos() {
         return prestamos;
     }
