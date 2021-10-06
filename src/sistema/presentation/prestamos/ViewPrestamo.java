@@ -55,8 +55,10 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
         jButtonBuscar = new javax.swing.JButton();
         jButtonListar = new javax.swing.JButton();
         jButtonRealizarPago = new javax.swing.JButton();
+        jButtonRegresar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
 
         jTablePrestamosC.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,11 +103,23 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
         jButtonBuscar.setText("Buscar");
 
         jButtonListar.setText("Listar");
+        jButtonListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonListarActionPerformed(evt);
+            }
+        });
 
         jButtonRealizarPago.setText("Mostrar Mensualidades");
         jButtonRealizarPago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRealizarPagoActionPerformed(evt);
+            }
+        });
+
+        jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegresarActionPerformed(evt);
             }
         });
 
@@ -145,11 +159,14 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
                                 .addComponent(jButtonListar))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(jButtonRealizarPago)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(17, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButtonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(jButtonRealizarPago)
+                .addGap(70, 70, 70))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,7 +189,9 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonRealizarPago)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonRealizarPago)
+                    .addComponent(jButtonRegresar))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -197,6 +216,14 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
         controller.mensualidadShow();
     }//GEN-LAST:event_jButtonRealizarPagoActionPerformed
 
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
+        controller.hide();
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
+
+    private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
+        controller.prestamoSearch(jTextFieldCodigo.getText());
+    }//GEN-LAST:event_jButtonListarActionPerformed
+
     public static void main(String args[]) {
        
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -212,6 +239,7 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonListar;
     private javax.swing.JButton jButtonRealizarPago;
+    private javax.swing.JButton jButtonRegresar;
     private javax.swing.JLabel jLabelCodigo;
     private javax.swing.JLabel jLabelMonto;
     private javax.swing.JLabel jLabelPlazo;
