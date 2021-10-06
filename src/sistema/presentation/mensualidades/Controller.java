@@ -2,6 +2,7 @@ package sistema.presentation.mensualidades;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import sistema.Application;
 import sistema.logic.Mensualidad;
 import sistema.logic.Prestamo;
 import sistema.logic.Service;
@@ -21,6 +22,11 @@ public class Controller {
     
     public void show(){
         this.view.setVisible(true);
+    }
+    
+    public void hide(){
+        this.view.setVisible(false);
+        Application.PRESTAMOS.show();
     }
     
     public void mensualidadAdd(Mensualidad mensualidad){

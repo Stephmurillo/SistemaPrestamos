@@ -1,6 +1,7 @@
 package sistema.logic;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import sistema.data.Data;
 import sistema.data.XmlPersister;
 
@@ -73,6 +74,11 @@ public class Service {
         Prestamo result=data.getPrestamos().stream().filter(f->f.getCodigo().equals(numero)).findFirst().orElse(null);
         if (result!=null) return result;
         else throw new Exception("Prestamo no existe");   
+    }
+    
+    public List<Prestamo> prestamoSearch(String codigo){
+        List<Prestamo> result = data.getPrestamos().stream().filter(c->c.getCodigo().startsWith(codigo)).collect(Collectors.toList());
+       return result;        
     }
     
       public void store(){
