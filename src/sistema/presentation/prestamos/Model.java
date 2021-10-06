@@ -1,5 +1,6 @@
 package sistema.presentation.prestamos;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -9,15 +10,19 @@ import sistema.logic.Prestamo;
 public class Model extends Observable{
     
     Prestamo prestamo;
-    List<Prestamo> prestamos;
-   Cliente cliente;
+    Cliente cliente;
 
+    public Model(){
+     cliente = new Cliente();
+     prestamo = new Prestamo();
+    }
+   
     public List<Prestamo> getPrestamos() {
-        return prestamos;
+        return cliente.getPrestamos();
     }
 
     public void setPrestamos(List<Prestamo> prestamos) {
-        this.prestamos = prestamos;
+        this.cliente.setPrestamos(prestamos);
     }
     
     public Prestamo getPrestamo() {
@@ -32,7 +37,7 @@ public class Model extends Observable{
         return cliente;
     }
 
-    public void setCliente(Cliente clientes) {
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
     

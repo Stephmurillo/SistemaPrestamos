@@ -371,8 +371,10 @@ public class ViewCliente extends javax.swing.JFrame implements java.util.Observe
     }//GEN-LAST:event_jTextFieldProvinciaActionPerformed
 
     private void jButtonPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrestamoActionPerformed
-      //  sistema.presentation.prestamos.Model mod ;
-        //mod.setCliente(model.getCliente());
+        sistema.presentation.prestamos.Model modelPrestamos =new sistema.presentation.prestamos.Model() ;
+        System.out.println(this.model.getCliente().getNombre());
+        modelPrestamos.setCliente(this.model.getCliente());
+        System.out.println(modelPrestamos.getCliente().getNombre() +"-> MODEL 2");
         controller.prestamosShow();
     }//GEN-LAST:event_jButtonPrestamoActionPerformed
 
@@ -381,7 +383,7 @@ public class ViewCliente extends javax.swing.JFrame implements java.util.Observe
         ventana.setVisible(true);
     }
     
-    private String MESSAGE;
+    private final String MESSAGE;
     public int provincia;
     public int provinciaSelected;
     
