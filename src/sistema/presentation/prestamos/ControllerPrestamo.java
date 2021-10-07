@@ -7,11 +7,11 @@ import sistema.Application;
 import sistema.logic.Prestamo;
 import sistema.logic.Service;
 
-public class Controller {
-    Model model;
+public class ControllerPrestamo {
+    ModelPrestamo model;
     ViewPrestamo view;
 
-    public Controller(Model model, ViewPrestamo view) {
+    public ControllerPrestamo(ModelPrestamo model, ViewPrestamo view) {
         this.model = model;
         this.view = view;
         model.setPrestamo(new Prestamo());
@@ -64,8 +64,8 @@ public class Controller {
         Application.MENSUALIDADES.show();
     } 
     
-    public void prestamoSearch(String codigo){
-        List<Prestamo> prestamos = Service.instance().prestamoSearch(codigo);
+    public void prestamoSearch(String ced,String codigo){
+        List<Prestamo> prestamos = Service.instance().prestamoSearch(ced,codigo);
         model.setPrestamo(new Prestamo(codigo, 0, 0, 0));
         model.setPrestamos(prestamos);
         model.commit();
