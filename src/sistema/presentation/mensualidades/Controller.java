@@ -26,7 +26,7 @@ public class Controller {
     
     public void hide(){
         this.view.setVisible(false);
-        Application.PRESTAMOS.show();
+        //Application.PRESTAMOS.show();
     }
     
     public void mensualidadAdd(Mensualidad mensualidad){

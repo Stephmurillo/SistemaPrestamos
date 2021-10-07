@@ -13,9 +13,11 @@ public class Prestamo {
     private double monto;
     private double tasa;
     private double plazo;
+    Cliente cliente;
     ArrayList<Mensualidad> mensualidades = new ArrayList<>();
 
-    public Prestamo(String cod, double m, double t, double p) {
+    public Prestamo(Cliente cliente, String cod, double m, double t, double p) {
+        this.cliente = cliente;
         this.codigo = cod;
         this.monto = m;
         this.tasa = t;
@@ -23,6 +25,7 @@ public class Prestamo {
     }
 
     public Prestamo() {
+        this.cliente = null;
         this.codigo = "000";
         this.monto = 0;
         this.tasa = 0;
@@ -56,7 +59,11 @@ public class Prestamo {
     public void setPlazo(double plazo) {
         this.plazo = plazo;
     }
-
+    
+    public Cliente getCliente(){
+        return cliente;
+    }
+    
     public double getCuota() {
         double cuota;
         cuota = monto * tasa / 100 / (1 - Math.pow(1 + this.tasa / 100, -this.plazo));
@@ -96,5 +103,4 @@ public class Prestamo {
         java.text.DecimalFormat df = new java.text.DecimalFormat("####");
         return "MONTO: " + df.format(monto) + "    TASA: " + df.format(tasa) + "    PLAZO: " + df.format(plazo)+ "    CUOTA: " + df.format(getCuota());
     }
-
 }

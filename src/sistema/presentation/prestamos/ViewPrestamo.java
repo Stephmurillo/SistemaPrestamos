@@ -6,7 +6,7 @@ import sistema.logic.Prestamo;
 public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observer{
 
     ControllerPrestamo controller;
-    ModelPrestamo model;
+    ModelPrestamo model = new ModelPrestamo();
     
     public void setController(ControllerPrestamo controller){
         this.controller = controller;
@@ -25,11 +25,6 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
         return model;
     }
     
-    /**
-     *
-     * @param o
-     * @param arg
-     */
     @Override
     public void update(Observable o, Object arg) {
          jTablePrestamosC.setModel(new PrestamosJTableModel(model.getCliente().getPrestamos()));
@@ -195,7 +190,7 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnadirActionPerformed
-        model.cliente.getPrestamos().add(new Prestamo(jTextFieldCodigo.getText(),Double.parseDouble(jTextFieldMonto.getText()),Double.parseDouble(jTextFieldTasa.getText()) ,Double.parseDouble(jTextFieldPlazo.getText()))); 
+        model.cliente.getPrestamos().add(new Prestamo(model.getCliente(), jTextFieldCodigo.getText(),Double.parseDouble(jTextFieldMonto.getText()),Double.parseDouble(jTextFieldTasa.getText()) ,Double.parseDouble(jTextFieldPlazo.getText()))); 
         model.setPrestamos(model.cliente.getPrestamos());
         System.out.println( model.getPrestamos().toString());
     }//GEN-LAST:event_jButtonAnadirActionPerformed
@@ -217,16 +212,6 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         controller.prestamoGet(jTextFieldCodigo.getText());
     }//GEN-LAST:event_jButtonBuscarActionPerformed
-
-    public static void main(String args[]) {
-       
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new ViewPrestamo().setVisible(true);
-            }
-        });
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAnadir;

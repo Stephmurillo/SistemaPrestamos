@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import sistema.Application;
+import sistema.logic.Cliente;
 import sistema.logic.Prestamo;
 import sistema.logic.Service;
 
@@ -20,7 +21,10 @@ public class ControllerPrestamo {
         view.setController(this);
     }
     
-    public void show(){
+    public void show(Cliente c){
+        model.setCliente(c);
+        model.setPrestamos(Service.instance().getPrestamosXCliente(c.getCedula()));
+        model.commit();
         this.view.setVisible(true);
     }
     
@@ -32,7 +36,7 @@ public class ControllerPrestamo {
     public void prestamoAdd(Prestamo prestamo){
         try {
             Service.instance().prestamoAdd(prestamo);
-            model.setPrestamo(new Prestamo("", 0, 0, 0));
+            model.setPrestamo(new Prestamo(null, "", 0, 0, 0));
             model.setPrestamos(Arrays.asList(prestamo));
             model.commit();
         } catch (Exception ex) {
@@ -66,7 +70,7 @@ public class ControllerPrestamo {
     
     public void prestamoSearch(String ced,String codigo){
         List<Prestamo> prestamos = Service.instance().prestamoSearch(ced,codigo);
-        model.setPrestamo(new Prestamo(codigo, 0, 0, 0));
+        model.setPrestamo(new Prestamo(null, codigo, 0, 0, 0));
         model.setPrestamos(prestamos);
         model.commit();
     }
