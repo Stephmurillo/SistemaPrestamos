@@ -1,17 +1,17 @@
 package sistema.presentation.prestamos;
 
-import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import sistema.logic.Prestamo;
 
 public class PrestamosJTableModel extends AbstractTableModel implements TableModel {
 
-    String[] cols = {"Codigo", "Saldo", "Interés", "Amortización"};
+    String[] cols = {"Codigo", "Monto", "Tasa", "Plazo"};
     
-    ArrayList<Prestamo> rows;
+    List<Prestamo> rows;
 
-    public PrestamosJTableModel(ArrayList<Prestamo> rows) {
+    public PrestamosJTableModel(List<Prestamo> rows) {
         this.rows = rows;
     }
 
@@ -30,9 +30,10 @@ public class PrestamosJTableModel extends AbstractTableModel implements TableMod
         return rows.size();
     }
 
+
     @Override
-    public Class<?> getColumnClass(int columnIndex) {
-        return Integer.class;
+    public Class<?> getColumnClass(int i) {
+        return super.getColumnClass(i); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -41,13 +42,13 @@ public class PrestamosJTableModel extends AbstractTableModel implements TableMod
         java.text.DecimalFormat df = new java.text.DecimalFormat("####");
         switch (col) {
             case 0:
-             //   return df.format(m.getNumero());
+                return df.format(m.getCodigo());
             case 1:
-               // return df.format(m.getSaldoAct());
+                return df.format(m.getMonto());
             case 2:
-              //  return df.format(m.getInteres());
+                return df.format(m.getTasa());
             case 3:
-               // return df.format(m.getAmortizacion());
+                return df.format(m.getPlazo());
             default:
                 return "";
         }

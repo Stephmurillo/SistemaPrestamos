@@ -15,6 +15,8 @@ public class Model extends Observable{
     List<Mensualidad> mensualidades;
 
     public Model(){
+     cliente = new Cliente();
+     prestamo = new Prestamo();
      mensualidades = new ArrayList<>();
      mensualidad = new Mensualidad();
      }
