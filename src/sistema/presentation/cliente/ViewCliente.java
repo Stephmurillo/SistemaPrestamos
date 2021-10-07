@@ -378,7 +378,7 @@ public class ViewCliente extends javax.swing.JFrame implements java.util.Observe
     }//GEN-LAST:event_jTextFieldProvinciaActionPerformed
 
     private void jButtonPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrestamoActionPerformed
-        sistema.presentation.prestamos.Model modelPrestamos = new sistema.presentation.prestamos.Model();
+        sistema.presentation.prestamos.ModelPrestamo modelPrestamos = new sistema.presentation.prestamos.ModelPrestamo();
         modelPrestamos.setCliente(this.model.getCliente());
         controller.prestamosShow();
     }//GEN-LAST:event_jButtonPrestamoActionPerformed

@@ -13,9 +13,9 @@ public class Application {
         sistema.presentation.cliente.Controller controllerClientes = new sistema.presentation.cliente.Controller(modelClientes,viewClientes);
         CLIENTES = controllerClientes;
         
-        sistema.presentation.prestamos.Model modelPrestamos =new sistema.presentation.prestamos.Model() ;
+        sistema.presentation.prestamos.ModelPrestamo modelPrestamos =new sistema.presentation.prestamos.ModelPrestamo() ;
         sistema.presentation.prestamos.ViewPrestamo viewPrestamo = new sistema.presentation.prestamos.ViewPrestamo();
-        sistema.presentation.prestamos.Controller controllerPrestamos = new sistema.presentation.prestamos.Controller(modelPrestamos,viewPrestamo);
+        sistema.presentation.prestamos.ControllerPrestamo controllerPrestamos = new sistema.presentation.prestamos.ControllerPrestamo(modelPrestamos,viewPrestamo);
         PRESTAMOS = controllerPrestamos;       
         
         sistema.presentation.mensualidades.Model modelMensualidades = new sistema.presentation.mensualidades.Model() ;
@@ -27,7 +27,7 @@ public class Application {
     }
 
     public static sistema.presentation.cliente.Controller CLIENTES;
-    public static sistema.presentation.prestamos.Controller PRESTAMOS;
+    public static sistema.presentation.prestamos.ControllerPrestamo PRESTAMOS;
     public static sistema.presentation.mensualidades.Controller MENSUALIDADES;
     
     }

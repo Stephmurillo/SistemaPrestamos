@@ -5,26 +5,31 @@ import sistema.logic.Prestamo;
 
 public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observer{
 
-    Controller controller;
-    Model model;
+    ControllerPrestamo controller;
+    ModelPrestamo model;
     
-    public void setController(Controller controller){
+    public void setController(ControllerPrestamo controller){
         this.controller = controller;
     }
 
-    public Controller getController() {
+    public ControllerPrestamo getController() {
         return controller;
     }
     
-    public void setModel(Model model){
+    public void setModel(ModelPrestamo model){
         this.model = model;
         model.addObserver(this);
     }
 
-    public Model getModel() {
+    public ModelPrestamo getModel() {
         return model;
     }
     
+    /**
+     *
+     * @param o
+     * @param arg
+     */
     @Override
     public void update(Observable o, Object arg) {
          jTablePrestamosC.setModel(new PrestamosJTableModel(model.getCliente().getPrestamos()));
@@ -186,7 +191,7 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
     private void jButtonAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnadirActionPerformed
         model.cliente.getPrestamos().add(new Prestamo(jTextFieldCodigo.getText(),Double.parseDouble(jTextFieldMonto.getText()),Double.parseDouble(jTextFieldTasa.getText()) ,Double.parseDouble(jTextFieldPlazo.getText()))); 
         model.setPrestamos(model.cliente.getPrestamos());
-      // System.out.println( model.getPrestamos().toString());
+        System.out.println( model.getPrestamos().toString());
     }//GEN-LAST:event_jButtonAnadirActionPerformed
 
     private void jButtonRealizarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRealizarPagoActionPerformed

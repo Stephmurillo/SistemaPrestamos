@@ -7,12 +7,12 @@ import java.util.Observer;
 import sistema.logic.Cliente;
 import sistema.logic.Prestamo;
 
-public class Model extends Observable{
+public class ModelPrestamo extends Observable{
     
     Prestamo prestamo;
     Cliente cliente;
 
-    public Model(){
+    public ModelPrestamo(){
      cliente = new Cliente();
      prestamo = new Prestamo();
     }

@@ -7,11 +7,11 @@ import sistema.Application;
 import sistema.logic.Prestamo;
 import sistema.logic.Service;
 
-public class Controller {
-    Model model;
+public class ControllerPrestamo {
+    ModelPrestamo model;
     ViewPrestamo view;
 
-    public Controller(Model model, ViewPrestamo view) {
+    public ControllerPrestamo(ModelPrestamo model, ViewPrestamo view) {
         this.model = model;
         this.view = view;
         model.setPrestamo(new Prestamo());
