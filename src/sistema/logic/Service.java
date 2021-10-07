@@ -71,13 +71,14 @@ public class Service {
     } 
     
     public Prestamo prestamoGet(String numero) throws Exception{
-        Prestamo result=data.getPrestamos().stream().filter(f->f.getCodigo().equals(numero)).findFirst().orElse(null);
+        Prestamo result= data.getPrestamos().stream().filter(f->f.getCodigo().equals(numero)).findFirst().orElse(null);
         if (result!=null) return result;
         else throw new Exception("Prestamo no existe");   
     }
     
-    public List<Prestamo> prestamoSearch(String codigo){
-        List<Prestamo> result = data.getPrestamos().stream().filter(c->c.getCodigo().startsWith(codigo)).collect(Collectors.toList());
+    public List<Prestamo> prestamoSearch(String ced,String codigo){
+       Cliente clie = data.getClientes().stream().filter(c->c.getCedula().equals(ced)).findFirst().orElse(null);
+       List<Prestamo> result = clie.getPrestamos().stream().filter(c->c.getCodigo().startsWith(codigo)).collect(Collectors.toList());
        return result;        
     }
     

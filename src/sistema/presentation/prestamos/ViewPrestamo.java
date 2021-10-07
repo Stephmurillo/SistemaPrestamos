@@ -1,10 +1,7 @@
 package sistema.presentation.prestamos;
 
-import java.util.ArrayList;
 import java.util.Observable;
 import sistema.logic.Prestamo;
-import sistema.presentation.prestamos.Controller;
-import sistema.presentation.prestamos.Model;
 
 public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observer{
 
@@ -30,7 +27,7 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
     
     @Override
     public void update(Observable o, Object arg) {
-        jTablePrestamosC.setModel(new PrestamosJTableModel((ArrayList<Prestamo>) model.getPrestamos()));   
+         jTablePrestamosC.setModel(new PrestamosJTableModel(model.getCliente().getPrestamos()));
     }
    
     public ViewPrestamo() {
@@ -75,23 +72,11 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
 
         jLabelCodigo.setText("Codigo");
 
-        jTextFieldCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCodigoActionPerformed(evt);
-            }
-        });
-
         jLabelMonto.setText("Monto");
 
         jLabelTasa.setText("Tasa");
 
         jLabelPlazo.setText("Plazo");
-
-        jTextFieldPlazo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPlazoActionPerformed(evt);
-            }
-        });
 
         jButtonAnadir.setText("Agregar");
         jButtonAnadir.addActionListener(new java.awt.event.ActionListener() {
@@ -198,16 +183,10 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCodigoActionPerformed
-
-    private void jTextFieldPlazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPlazoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPlazoActionPerformed
-
     private void jButtonAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnadirActionPerformed
-        controller.prestamoAdd(new Prestamo(jTextFieldCodigo.getText(),Double.parseDouble(jTextFieldMonto.getText()),Double.parseDouble(jTextFieldPlazo.getText()),Double.parseDouble(jTextFieldTasa.getText()))); 
+        model.cliente.getPrestamos().add(new Prestamo(jTextFieldCodigo.getText(),Double.parseDouble(jTextFieldMonto.getText()),Double.parseDouble(jTextFieldTasa.getText()) ,Double.parseDouble(jTextFieldPlazo.getText()))); 
+        model.setPrestamos(model.cliente.getPrestamos());
+      // System.out.println( model.getPrestamos().toString());
     }//GEN-LAST:event_jButtonAnadirActionPerformed
 
     private void jButtonRealizarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRealizarPagoActionPerformed
@@ -221,7 +200,7 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
     }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
-        controller.prestamoSearch(jTextFieldCodigo.getText());
+        controller.prestamoSearch(model.getCliente().getCedula(),jTextFieldCodigo.getText());
     }//GEN-LAST:event_jButtonListarActionPerformed
 
     public static void main(String args[]) {

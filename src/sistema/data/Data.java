@@ -21,11 +21,15 @@ public class Data {
     private List<Canton> cantones;
     private List<Distrito> distritos;
     private List<Prestamo> prestamos;
-     private List<Mensualidad> mensualidades;
+    private List<Mensualidad> mensualidades;
 
     public Data() {
         clientes = new ArrayList<>();    
-        provincias = new ArrayList<>();   
+        provincias = new ArrayList<>(); 
+        prestamos = new ArrayList<>(); 
+        cantones = new ArrayList<>(); 
+        mensualidades = new ArrayList<>(); 
+        distritos = new ArrayList<>(); 
     }
     
     public List<Cliente> getClientes() {

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import sistema.Application;
-import static sistema.Application.MENSUALIDADES;
 import sistema.logic.Prestamo;
 import sistema.logic.Service;
 
@@ -65,8 +64,8 @@ public class Controller {
         Application.MENSUALIDADES.show();
     } 
     
-    public void prestamoSearch(String codigo){
-        List<Prestamo> prestamos = Service.instance().prestamoSearch(codigo);
+    public void prestamoSearch(String ced,String codigo){
+        List<Prestamo> prestamos = Service.instance().prestamoSearch(ced,codigo);
         model.setPrestamo(new Prestamo(codigo, 0, 0, 0));
         model.setPrestamos(prestamos);
         model.commit();
