@@ -32,9 +32,8 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
     }
    
     public ViewPrestamo() {
-                this.setTitle(model.getCliente().getNombre());
-
         initComponents();
+        this.setTitle(model.getCliente().getNombre());
     }
 
     @SuppressWarnings("unchecked")
