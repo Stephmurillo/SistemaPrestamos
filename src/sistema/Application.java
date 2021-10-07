@@ -3,6 +3,11 @@
     - Stephanny Murillo | Grupo 03
 */
 
+// ARREGLAR:
+// - Actualización de cliente.
+// - Que aparezca el nombre del cliente en la ventana de prestamos.
+//
+
 package sistema;
 
 public class Application {

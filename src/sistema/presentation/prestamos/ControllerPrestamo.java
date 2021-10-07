@@ -32,7 +32,7 @@ public class ControllerPrestamo {
     public void prestamoAdd(Prestamo prestamo){
         try {
             Service.instance().prestamoAdd(prestamo);
-            model.setPrestamo(new Prestamo());
+            model.setPrestamo(new Prestamo("", 0, 0, 0));
             model.setPrestamos(Arrays.asList(prestamo));
             model.commit();
         } catch (Exception ex) {

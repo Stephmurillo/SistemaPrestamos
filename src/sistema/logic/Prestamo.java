@@ -1,90 +1,95 @@
 package sistema.logic;
 
 import java.util.ArrayList;
-import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Prestamo {
-        private String codigo;
-        private double monto;
-	private double tasa;
-	private double plazo;
-        ArrayList<Mensualidad> mensualidades = new ArrayList<>();
 
-	public Prestamo(String cod, double m, double t, double p){
-	    this.codigo = cod;
-            this.monto = m;
-            this.tasa = t;
-            this.plazo = p;
-	}
+    @XmlID
+    private String codigo;
+    private double monto;
+    private double tasa;
+    private double plazo;
+    ArrayList<Mensualidad> mensualidades = new ArrayList<>();
 
-	public Prestamo(){
-            this.codigo = "000";
-            this.monto = 0;
-            this.tasa = 0;
-            this.plazo = 0;
-	}
+    public Prestamo(String cod, double m, double t, double p) {
+        this.codigo = cod;
+        this.monto = m;
+        this.tasa = t;
+        this.plazo = p;
+    }
 
-        public String getCodigo(){
-		return this.codigo;
-	}
-        
-	public double getMonto(){
-		return this.monto;
-	}
+    public Prestamo() {
+        this.codigo = "000";
+        this.monto = 0;
+        this.tasa = 0;
+        this.plazo = 0;
+    }
 
-	public void setMonto(double monto){
-		this.monto = monto;
-	}
+    public String getCodigo() {
+        return this.codigo;
+    }
 
-	public double getTasa(){
-		return this.tasa;
-	}
+    public double getMonto() {
+        return this.monto;
+    }
 
-	public void setTasa(double tasa){
-		this.tasa = tasa;
-	}
+    public void setMonto(double monto) {
+        this.monto = monto;
+    }
 
-	public double getPlazo(){
-		return plazo;
-	}
+    public double getTasa() {
+        return this.tasa;
+    }
 
-	public void setPlazo(double plazo){
-		this.plazo = plazo;
-	}
+    public void setTasa(double tasa) {
+        this.tasa = tasa;
+    }
 
-	public double getCuota(){
-		double cuota;
-		cuota   = monto * tasa/100 /(1-Math.pow(1 + this.tasa/100, -this.plazo));
-		return cuota;
-	}
+    public double getPlazo() {
+        return plazo;
+    }
 
-	public double getTotal(){
-		double total;
-		total = this.getCuota() * this.getPlazo();
-		return total;
-	}
+    public void setPlazo(double plazo) {
+        this.plazo = plazo;
+    }
 
-	public ArrayList<Mensualidad> getMensualidades(){
-            Mensualidad m;
-            double cuota = this.getCuota();
-            double saldo = monto;
-            double interes = 0;
-            double amortizacion = 0;
-            Boolean estado = false;
+    public double getCuota() {
+        double cuota;
+        cuota = monto * tasa / 100 / (1 - Math.pow(1 + this.tasa / 100, -this.plazo));
+        return cuota;
+    }
 
-	    for (int i = 0; i < plazo; i++) {
-                interes = saldo * tasa / 100;
-                amortizacion = cuota - interes;
-                m = new Mensualidad("i+1", saldo, interes, amortizacion, estado);
-                mensualidades.add(m);
-                saldo = saldo - amortizacion;
-            }
-            return mensualidades;
-	}
-        
-        public void setMensualidades(ArrayList<Mensualidad> mensualidades){
-            this.mensualidades = mensualidades;
+    public double getTotal() {
+        double total;
+        total = this.getCuota() * this.getPlazo();
+        return total;
+    }
+
+    public ArrayList<Mensualidad> getMensualidades() {
+        Mensualidad m;
+        double cuota = this.getCuota();
+        double saldo = monto;
+        double interes = 0;
+        double amortizacion = 0;
+        Boolean estado = false;
+
+        for (int i = 0; i < plazo; i++) {
+            interes = saldo * tasa / 100;
+            amortizacion = cuota - interes;
+            m = new Mensualidad("i+1", saldo, interes, amortizacion, estado);
+            mensualidades.add(m);
+            saldo = saldo - amortizacion;
         }
+        return mensualidades;
+    }
+
+    public void setMensualidades(ArrayList<Mensualidad> mensualidades) {
+        this.mensualidades = mensualidades;
+    }
 
     @Override
     public String toString() {
