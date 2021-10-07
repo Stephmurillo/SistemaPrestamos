@@ -3,13 +3,11 @@ package sistema.presentation.prestamos;
 import java.util.ArrayList;
 import java.util.Observable;
 import sistema.logic.Prestamo;
-import sistema.presentation.prestamos.Controller;
-import sistema.presentation.prestamos.Model;
 
 public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observer{
 
     Controller controller;
-    Model model;
+    Model model = new Model();
     
     public void setController(Controller controller){
         this.controller = controller;
@@ -34,6 +32,8 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
     }
    
     public ViewPrestamo() {
+                this.setTitle(model.getCliente().getNombre());
+
         initComponents();
     }
 
@@ -101,6 +101,11 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
         });
 
         jButtonBuscar.setText("Buscar");
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
 
         jButtonListar.setText("Listar");
         jButtonListar.addActionListener(new java.awt.event.ActionListener() {
@@ -224,6 +229,10 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
         controller.prestamoSearch(jTextFieldCodigo.getText());
     }//GEN-LAST:event_jButtonListarActionPerformed
 
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        controller.prestamoGet(jTextFieldCodigo.getText());
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
+
     public static void main(String args[]) {
        
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -233,7 +242,7 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAnadir;
     private javax.swing.JButton jButtonBuscar;
