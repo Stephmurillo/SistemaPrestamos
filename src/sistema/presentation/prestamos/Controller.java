@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import sistema.Application;
-import static sistema.Application.MENSUALIDADES;
 import sistema.logic.Prestamo;
 import sistema.logic.Service;
 
@@ -33,7 +32,7 @@ public class Controller {
     public void prestamoAdd(Prestamo prestamo){
         try {
             Service.instance().prestamoAdd(prestamo);
-            model.setPrestamo(new Prestamo());
+            model.setPrestamo(new Prestamo("", 0, 0, 0));
             model.setPrestamos(Arrays.asList(prestamo));
             model.commit();
         } catch (Exception ex) {
