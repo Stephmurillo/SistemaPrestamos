@@ -30,11 +30,11 @@ public class ControllerPagos {
         Application.CLIENTES.hide();
     }
     
-    public void mensualidadAdd(Pagos mensualidad){
+    public void pagoAdd(String cod, Pagos pago){
         try {
-            Service.instance().mensualidadAdd(mensualidad);
+            Service.instance().pagoAdd(cod, pago);
             model.setMensualidad(new Pagos());
-            model.setPagos(Arrays.asList(mensualidad));
+            model.setPagos(Arrays.asList(pago));
             model.commit();
         } catch (Exception ex) {
             
@@ -42,9 +42,9 @@ public class ControllerPagos {
     }
     
     public void pago(int row){
-        Pagos mensualidad = model.getPagos().get(row);
-       /* if(mensualidad.getEstado() == false){
-            mensualidad.setEstado(true);
+        Pagos pago = model.getPagos().get(row);
+       /* if(pago.getEstado() == false){
+            pago.setEstado(true);
         }*/
         model.commit();
     }

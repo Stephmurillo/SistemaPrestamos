@@ -40,9 +40,9 @@ public class ViewPagos extends javax.swing.JFrame implements java.util.Observer{
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTablePagos = new javax.swing.JTable();
         JButtonPago = new javax.swing.JButton();
-        MontoPagoFdl = new javax.swing.JTextField();
+        jFieldMontoPago = new javax.swing.JTextField();
         DontLbl = new javax.swing.JLabel();
         jButtonRegresar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -54,7 +54,7 @@ public class ViewPagos extends javax.swing.JFrame implements java.util.Observer{
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTablePagos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -65,12 +65,12 @@ public class ViewPagos extends javax.swing.JFrame implements java.util.Observer{
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTablePagos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                jTablePagosMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTablePagos);
 
         JButtonPago.setText("Realizar Pago");
         JButtonPago.addActionListener(new java.awt.event.ActionListener() {
@@ -105,32 +105,35 @@ public class ViewPagos extends javax.swing.JFrame implements java.util.Observer{
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(48, 48, 48)
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(78, 78, 78)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(201, 201, 201)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jFieldMontoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 34, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(201, 201, 201)
+                        .addComponent(JButtonPago, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(MontoPagoFdl, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(DontLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(12, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(201, 201, 201)
-                .addComponent(JButtonPago, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(92, 92, 92)
-                .addComponent(jButtonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(DontLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12))
+                            .addComponent(jButtonRegresar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,51 +149,49 @@ public class ViewPagos extends javax.swing.JFrame implements java.util.Observer{
                 .addGap(12, 12, 12)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jFieldMontoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(MontoPagoFdl, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JButtonPago, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(29, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(DontLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(4, 4, 4)
+                        .addComponent(jButtonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JButtonPago, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        mensualidad = model.getPagos().get(jTable1.getSelectedRow());
-        amortizacion = mensualidad.getAmortizacion();
-        row = jTable1.getSelectedRow();
-    }//GEN-LAST:event_jTable1MouseClicked
+    private void jTablePagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePagosMouseClicked
+        pago = model.getPagos().get(jTablePagos.getSelectedRow());
+        amortizacion = pago.getAmortizacion();
+        row = jTablePagos.getSelectedRow();
+    }//GEN-LAST:event_jTablePagosMouseClicked
 
     private void JButtonPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonPagoActionPerformed
-      /*  if(mensualidad.getEstado() != true){
-            pago = Integer.parseInt(MontoPagoFdl.getText());
-            if(pago < mensualidad.getAmortizacion()){
-                DontLbl.setText("El pago es menor al monto a pagar!");
-            }
-            else if(pago > mensualidad.getAmortizacion()){
-                prestamo = model.getPrestamo();
-                monto = pago - mensualidad.getAmortizacion();
-                prestamo.setMonto(monto);
-                prestamo.setPagos(prestamo.getPagos());
-                model.setPrestamo(prestamo);
-                controller.pago(row);
-                DontLbl.setText("Pago realizado!");
-            }
-            else{
-                controller.pago(row);
-                DontLbl.setText("Pago realizado!");
-            }
+        montoPago = Integer.parseInt(jFieldMontoPago.getText());
+        if(montoPago < pago.getAmortizacion()){
+            DontLbl.setText("El pago es menor al monto a pagar!");
+        }
+        else if(montoPago > pago.getAmortizacion()){
+            prestamo = model.getPrestamo();
+            monto = montoPago - pago.getAmortizacion();
+            controller.pagoAdd(model.getPrestamo().getCodigo(), new Pagos(monto, model.getPrestamo().getTasa()));
+            prestamo.setMonto(monto);
+            prestamo.setPagos(prestamo.getPagos());
+            model.setPrestamo(prestamo);
+            controller.pago(row);
+            DontLbl.setText("Pago realizado!");
         }
         else{
-            DontLbl.setText("Mensualidad pagada!");
-        }*/
+            controller.pago(row);
+            DontLbl.setText("Pago realizado!");
+        }
+        
     }//GEN-LAST:event_JButtonPagoActionPerformed
 
     private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
@@ -212,9 +213,9 @@ public class ViewPagos extends javax.swing.JFrame implements java.util.Observer{
     }
     
     Prestamo prestamo;
-    Pagos mensualidad;
+    Pagos pago;
     double amortizacion;
-    double pago;
+    double montoPago;
     int row;
     double monto;
     double tasa;
@@ -222,13 +223,13 @@ public class ViewPagos extends javax.swing.JFrame implements java.util.Observer{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel DontLbl;
     private javax.swing.JButton JButtonPago;
-    private javax.swing.JTextField MontoPagoFdl;
     private javax.swing.JButton jButtonRegresar;
+    private javax.swing.JTextField jFieldMontoPago;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTablePagos;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
