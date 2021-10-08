@@ -6,7 +6,8 @@
 // ARREGLAR:
 // - Actualización de cliente.
 // - Que aparezca el nombre del cliente en la ventana de prestamos.
-//
+// - Setear valores en el pago.
+// - En mapa no se queda marcada la provincia.
 
 package sistema;
 

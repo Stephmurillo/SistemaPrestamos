@@ -74,7 +74,7 @@ public class Controller {
             Provincia p = model.getProvincias().get(0);
             Canton c = p.getCantones().get(0);
             Distrito d = c.getDistritos().get(0);
-            model.setCliente(new Cliente("","",p, c, d));
+            model.setCliente(new Cliente("","", p, c, d));
             model.setClientes(Arrays.asList(cliente));
             model.commit();
         } catch (Exception ex) {
