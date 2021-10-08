@@ -13,11 +13,9 @@ public class Prestamo {
     private double monto;
     private double tasa;
     private double plazo;
-    Cliente cliente;
-    ArrayList<Mensualidad> mensualidades = new ArrayList<>();
+    ArrayList<Pagos> pagos = new ArrayList<>();
 
-    public Prestamo(Cliente cliente, String cod, double m, double t, double p) {
-        this.cliente = cliente;
+    public Prestamo(String cod, double m, double t, double p) {
         this.codigo = cod;
         this.monto = m;
         this.tasa = t;
@@ -25,7 +23,6 @@ public class Prestamo {
     }
 
     public Prestamo() {
-        this.cliente = null;
         this.codigo = "000";
         this.monto = 0;
         this.tasa = 0;
@@ -59,11 +56,7 @@ public class Prestamo {
     public void setPlazo(double plazo) {
         this.plazo = plazo;
     }
-    
-    public Cliente getCliente(){
-        return cliente;
-    }
-    
+
     public double getCuota() {
         double cuota;
         cuota = monto * tasa / 100 / (1 - Math.pow(1 + this.tasa / 100, -this.plazo));
@@ -76,26 +69,12 @@ public class Prestamo {
         return total;
     }
 
-    public ArrayList<Mensualidad> getMensualidades() {
-        Mensualidad m;
-        double cuota = this.getCuota();
-        double saldo = monto;
-        double interes = 0;
-        double amortizacion = 0;
-        Boolean estado = false;
-
-        for (int i = 0; i < plazo; i++) {
-            interes = saldo * tasa / 100;
-            amortizacion = cuota - interes;
-            m = new Mensualidad("i+1", saldo, interes, amortizacion, estado);
-            mensualidades.add(m);
-            saldo = saldo - amortizacion;
-        }
-        return mensualidades;
+    public ArrayList<Pagos> getPagos() {
+       return this.pagos;
     }
 
-    public void setMensualidades(ArrayList<Mensualidad> mensualidades) {
-        this.mensualidades = mensualidades;
+    public void setPagos(ArrayList<Pagos> pagos) {
+        this.pagos = pagos;
     }
 
     @Override
@@ -103,4 +82,5 @@ public class Prestamo {
         java.text.DecimalFormat df = new java.text.DecimalFormat("####");
         return "MONTO: " + df.format(monto) + "    TASA: " + df.format(tasa) + "    PLAZO: " + df.format(plazo)+ "    CUOTA: " + df.format(getCuota());
     }
+
 }

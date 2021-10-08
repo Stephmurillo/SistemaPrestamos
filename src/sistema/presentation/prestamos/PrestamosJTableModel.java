@@ -42,7 +42,7 @@ public class PrestamosJTableModel extends AbstractTableModel implements TableMod
         java.text.DecimalFormat df = new java.text.DecimalFormat("####");
         switch (col) {
             case 0:
-                return df.format(m.getCodigo());
+                return m.getCodigo();
             case 1:
                 return df.format(m.getMonto());
             case 2:

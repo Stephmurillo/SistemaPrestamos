@@ -25,15 +25,20 @@ public class ControllerPrestamo {
         this.view.setVisible(true);
     }
     
+    public void show(Cliente c){
+        this.model.setCliente(c);
+        this.view.setVisible(true);
+    }
+    
     public void hide(){
         this.view.setVisible(false);
         Application.CLIENTES.show();
     }
     
-    public void prestamoAdd(Prestamo prestamo){
+    public void prestamoAdd(String ced,Prestamo prestamo){
         try {
-            Service.instance().prestamoAdd(prestamo);
-            model.setPrestamo(new Prestamo(null, "", 0, 0, 0));
+            Service.instance().prestamoAdd(ced,prestamo);
+            model.setPrestamo(new Prestamo("", 0, 0, 0));
             model.setPrestamos(Arrays.asList(prestamo));
             model.commit();
         } catch (Exception ex) {
@@ -67,7 +72,7 @@ public class ControllerPrestamo {
     
     public void prestamoSearch(String ced,String codigo){
         List<Prestamo> prestamos = Service.instance().prestamoSearch(ced,codigo);
-        model.setPrestamo(new Prestamo(null, codigo, 0, 0, 0));
+        model.setPrestamo(new Prestamo(codigo, 0, 0, 0));
         model.setPrestamos(prestamos);
         model.commit();
     }

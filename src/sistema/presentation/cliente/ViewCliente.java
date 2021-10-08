@@ -313,7 +313,7 @@ public class ViewCliente extends javax.swing.JFrame implements java.util.Observe
                 this.flag.setText(MESSAGE);
             }  
         } else {
-            provinciaSelected = Integer.parseInt(cliente.getProvincia().getNumero());
+            provinciaSelected = 0;
             ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[this.provinciaSelected]));
             this.flag.setIcon(imageIcon);
         }
@@ -379,9 +379,7 @@ public class ViewCliente extends javax.swing.JFrame implements java.util.Observe
     }//GEN-LAST:event_jTextFieldProvinciaActionPerformed
 
     private void jButtonPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrestamoActionPerformed
-        sistema.presentation.prestamos.ModelPrestamo modelPrestamos = new sistema.presentation.prestamos.ModelPrestamo();
-        modelPrestamos.setCliente(this.model.getCliente());
-        controller.prestamosShow();
+       controller.prestamosShow();
     }//GEN-LAST:event_jButtonPrestamoActionPerformed
 
     public static void main(String[] args) {
