@@ -52,6 +52,7 @@ public class ViewPagos extends javax.swing.JFrame implements java.util.Observer{
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("PAGOS");
         setResizable(false);
 
         jTablePagos.setModel(new javax.swing.table.DefaultTableModel(
@@ -201,17 +202,7 @@ public class ViewPagos extends javax.swing.JFrame implements java.util.Observer{
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
-
-    public static void main(String args[]) {
-      
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new ViewPagos().setVisible(true);
-            }
-        });
-    }
-    
+   
     Prestamo prestamo;
     Pagos pago;
     double amortizacion;

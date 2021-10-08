@@ -58,7 +58,7 @@ public class Service {
         else throw new Exception("Cliente ya existe");     
     }   
     
-    public void clienteUpdate(Cliente cliente){
+    public void clienteUpdate(Cliente cliente) throws Exception{
         Cliente old = data.getClientes().stream().filter(f->f.getCedula().equals(cliente.getCedula())).findFirst().orElse(null);
         if (old == null) data.getClientes().add(cliente);
         else {
