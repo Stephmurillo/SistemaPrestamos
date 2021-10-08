@@ -26,7 +26,8 @@ public class ControllerPagos {
     
     public void hide(){
         this.view.setVisible(false);
-        //Application.PRESTAMOS.show();
+        Application.PRESTAMOS.show();
+        Application.CLIENTES.hide();
     }
     
     public void mensualidadAdd(Pagos mensualidad){
@@ -61,5 +62,4 @@ public class ControllerPagos {
 //        }
 //        return null;
 //    }
-
 }
