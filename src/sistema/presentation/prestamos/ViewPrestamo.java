@@ -8,7 +8,7 @@ import sistema.logic.Prestamo;
 public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observer{
 
     ControllerPrestamo controller;
-    ModelPrestamo model;
+    ModelPrestamo model = new ModelPrestamo();
     
     public void setController(ControllerPrestamo controller){
         this.controller = controller;
@@ -46,7 +46,7 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
                // System.out.println(jTablePrestamosC.getValueAt(jTablePrestamosC.getSelectedRow(), 0).toString());
             }
         });
-        //this.setTitle(model.getCliente().getNombre());
+        this.setTitle(model.getCliente().getNombre());
     }
   
     @SuppressWarnings("unchecked")
@@ -181,9 +181,9 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCodigo)
                     .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonAnadir)
                     .addComponent(jButtonBuscar)
-                    .addComponent(jButtonListar))
+                    .addComponent(jButtonListar)
+                    .addComponent(jButtonAnadir))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelMonto)
@@ -228,18 +228,7 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         controller.prestamoGet(jTextFieldCodigo.getText());
     }//GEN-LAST:event_jButtonBuscarActionPerformed
-
-
-    public static void main(String args[]) {
-       
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new ViewPrestamo().setVisible(true);
-            }
-        });
-    }
-    
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAnadir;
     private javax.swing.JButton jButtonBuscar;

@@ -2,20 +2,26 @@ package sistema.presentation.cliente;
 
 import java.util.Arrays;
 import sistema.Application;
+import sistema.logic.Canton;
 import sistema.logic.Cliente;
+import sistema.logic.Distrito;
+import sistema.logic.Provincia;
 import sistema.logic.Service;
 
 public class Controller {
     Model model;
     ViewCliente view;
-
+    
     public Controller(Model model, ViewCliente view) {
         this.model = model;
         this.view = view;
         model.setProvincias(Service.instance().provinciaAll());
         model.setCantones(Service.instance().cantonAll());
         model.setDistritos(Service.instance().distritoAll());
-        model.setCliente(new Cliente());
+        Provincia p = model.getProvincias().get(0);
+        Canton c = p.getCantones().get(0);
+        Distrito d = c.getDistritos().get(0);
+        model.setCliente(new Cliente("", "", p, c, d));
         view.setModel(model);
         view.setController(this);
     }
@@ -60,8 +66,15 @@ public class Controller {
     
     public void clienteAdd(Cliente cliente){
         try {
+            if (this.clienteGet(cliente.getCedula()) != null) {
+                Cliente clien = this.clienteGet(cliente.getCedula());
+                //clientes.remove(clien);
+            }
             Service.instance().clienteAdd(cliente);
-            model.setCliente(new Cliente("","",null, null, null));
+            Provincia p = model.getProvincias().get(0);
+            Canton c = p.getCantones().get(0);
+            Distrito d = c.getDistritos().get(0);
+            model.setCliente(new Cliente("","",p, c, d));
             model.setClientes(Arrays.asList(cliente));
             model.commit();
         } catch (Exception ex) {
@@ -73,17 +86,6 @@ public class Controller {
         model.setCliente(cliente);
         model.commit();
     }
-    
-//    public void peliculaUpdate(Pelicula pelicula) {
-//        try {
-//            Service.instance().peliculaUpdate(pelicula);
-//            model.setPelicula(new Pelicula("", "", 0, null, null));
-//            model.setPeliculas(Arrays.asList(pelicula));
-//            model.commit();
-//        } catch (Exception ex) {
-//
-//        }
-//    }
     
     public void prestamosShow(){
         this.hide();
