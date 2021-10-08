@@ -37,7 +37,6 @@ public class ViewCliente extends javax.swing.JFrame implements java.util.Observe
         provincias = model.getProvincias();
         cedula.setText(cliente.getCedula());
         nombre.setText(cliente.getNombre());
-
         jTextFieldProvincia.setText(cliente.getProvincia().getNombre());
         jComboBoxCantones.setModel(new DefaultComboBoxModel(cliente.getProvincia().getCantones().toArray()));
         jComboBoxCantones.setSelectedItem(cliente.getCanton());
@@ -46,7 +45,7 @@ public class ViewCliente extends javax.swing.JFrame implements java.util.Observe
         this.provincia = Integer.parseInt(cliente.getProvincia().getNumero());
         ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[provincia]));
         this.flag.setIcon(imageIcon);
-
+        
     }
     
     public ViewCliente() {
@@ -343,22 +342,11 @@ public class ViewCliente extends javax.swing.JFrame implements java.util.Observe
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         if (!"".equals(cedula.getText()) && !"".equals(nombre.getText()) && provin != null && jComboBoxCantones.getSelectedItem() != null && jComboBoxDistritos.getSelectedItem() != null) {
+            jLabelDont.setText("");
             controller.clienteAdd(new Cliente(cedula.getText(), nombre.getText(), provin, (Canton) jComboBoxCantones.getSelectedItem(), (Distrito) jComboBoxDistritos.getSelectedItem()));
         } else if("".equals(cedula.getText()) || "".equals(nombre.getText()) || provin == null || jComboBoxCantones.getSelectedItem() == null || jComboBoxDistritos.getSelectedItem() == null) {
             jLabelDont.setText("Complete todos los campos!");
         }
-//        if (controller.clienteGet(cedula.getText()) != null) {
-//                Cliente clien = controller.clienteGet(cedula.getText());
-//                clien.setNombre(nombre.getText());
-//                clien.setProvincia(provin);
-//                clien.setCanton((Canton) jComboBoxCantones.getSelectedItem());
-//                clien.setDistrito((Distrito) jComboBoxDistritos.getSelectedItem());
-//                controller.clienteEdit(clien);
-//            }
-//            else {
-//                 
-//            }
-        
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jTextFieldProvinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldProvinciaActionPerformed
