@@ -13,7 +13,7 @@ public class Prestamo {
     private double monto;
     private double tasa;
     private double plazo;
-    ArrayList<Mensualidad> mensualidades = new ArrayList<>();
+    ArrayList<Pagos> pagos = new ArrayList<>();
 
     public Prestamo(String cod, double m, double t, double p) {
         this.codigo = cod;
@@ -69,26 +69,12 @@ public class Prestamo {
         return total;
     }
 
-    public ArrayList<Mensualidad> getMensualidades() {
-        Mensualidad m;
-        double cuota = this.getCuota();
-        double saldo = monto;
-        double interes = 0;
-        double amortizacion = 0;
-        Boolean estado = false;
-
-        for (int i = 0; i < plazo; i++) {
-            interes = saldo * tasa / 100;
-            amortizacion = cuota - interes;
-            m = new Mensualidad("i+1", saldo, interes, amortizacion, estado);
-            mensualidades.add(m);
-            saldo = saldo - amortizacion;
-        }
-        return mensualidades;
+    public ArrayList<Pagos> getPagos() {
+       return this.pagos;
     }
 
-    public void setMensualidades(ArrayList<Mensualidad> mensualidades) {
-        this.mensualidades = mensualidades;
+    public void setPagos(ArrayList<Pagos> pagos) {
+        this.pagos = pagos;
     }
 
     @Override

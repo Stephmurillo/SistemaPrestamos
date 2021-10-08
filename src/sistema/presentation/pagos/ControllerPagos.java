@@ -1,21 +1,21 @@
-package sistema.presentation.mensualidades;
+package sistema.presentation.pagos;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import sistema.Application;
-import sistema.logic.Mensualidad;
+import sistema.logic.Pagos;
 import sistema.logic.Prestamo;
 import sistema.logic.Service;
 
-public class Controller {
-    Model model;
-    ViewMensualidad view;
+public class ControllerPagos {
+    ModelPagos model;
+    ViewPagos view;
 
-    public Controller(Model model, ViewMensualidad view) {
+    public ControllerPagos(ModelPagos model, ViewPagos view) {
         this.model = model;
         this.view = view;
-        model.setMensualidad(new Mensualidad());
-        model.setMensualidades(new ArrayList<>());
+        model.setMensualidad(new Pagos());
+        model.setPagos(new ArrayList<>());
         view.setModel(model);
         view.setController(this);
     }
@@ -29,11 +29,11 @@ public class Controller {
         Application.PRESTAMOS.show();
     }
     
-    public void mensualidadAdd(Mensualidad mensualidad){
+    public void mensualidadAdd(Pagos mensualidad){
         try {
             Service.instance().mensualidadAdd(mensualidad);
-            model.setMensualidad(new Mensualidad());
-            model.setMensualidades(Arrays.asList(mensualidad));
+            model.setMensualidad(new Pagos());
+            model.setPagos(Arrays.asList(mensualidad));
             model.commit();
         } catch (Exception ex) {
             
@@ -41,10 +41,10 @@ public class Controller {
     }
     
     public void pago(int row){
-        Mensualidad mensualidad = model.getMensualidades().get(row);
-        if(mensualidad.getEstado() == false){
+        Pagos mensualidad = model.getPagos().get(row);
+       /* if(mensualidad.getEstado() == false){
             mensualidad.setEstado(true);
-        }
+        }*/
         model.commit();
     }
     

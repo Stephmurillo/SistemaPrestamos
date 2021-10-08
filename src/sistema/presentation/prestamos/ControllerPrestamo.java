@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import sistema.Application;
+import sistema.logic.Cliente;
 import sistema.logic.Prestamo;
 import sistema.logic.Service;
 
@@ -24,14 +25,19 @@ public class ControllerPrestamo {
         this.view.setVisible(true);
     }
     
+    public void show(Cliente c){
+        this.model.setCliente(c);
+        this.view.setVisible(true);
+    }
+    
     public void hide(){
         this.view.setVisible(false);
         Application.CLIENTES.show();
     }
     
-    public void prestamoAdd(Prestamo prestamo){
+    public void prestamoAdd(String ced,Prestamo prestamo){
         try {
-            Service.instance().prestamoAdd(prestamo);
+            Service.instance().prestamoAdd(ced,prestamo);
             model.setPrestamo(new Prestamo("", 0, 0, 0));
             model.setPrestamos(Arrays.asList(prestamo));
             model.commit();

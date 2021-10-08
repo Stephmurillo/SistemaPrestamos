@@ -1,22 +1,22 @@
-package sistema.presentation.mensualidades;
+package sistema.presentation.pagos;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
-import sistema.logic.Mensualidad;
+import sistema.logic.Pagos;
 
-public class MensualidadTableModel extends AbstractTableModel implements TableModel {
-    String[] cols ={"Mensualidad" ,"Saldo" ,"Interés" ,"Amortización" };
+public class PagosTableModel extends AbstractTableModel implements TableModel {
+    String[] cols ={"Numero" ,"Fecha" ,"Monto" ,"Interes" ,"Amortización" };
     
-    List<Mensualidad> rows;
+    List<Pagos> rows;
 
-    public  MensualidadTableModel(List<Mensualidad> rows){
+    public  PagosTableModel(List<Pagos> rows){
         this.rows = rows;
     }
 
     @Override
     public int getColumnCount() {
-        return 4;
+        return 5;
     }
 
     @Override
@@ -36,13 +36,14 @@ public class MensualidadTableModel extends AbstractTableModel implements TableMo
     
     @Override
     public Object getValueAt(int row, int col) {
-        Mensualidad m = rows.get(row);
+        Pagos m = rows.get(row);
         java.text.DecimalFormat df = new java.text.DecimalFormat("####");
         switch (col){
-            case 0: return df.format(m.getNumero());
-            case 1: return df.format(m.getSaldo());
-            case 2: return df.format(m.getInteres());
-            case 3: return df.format(m.getAmortizacion());
+            case 0: return m.getNumero();
+            case 1: return df.format(m.getFecha());
+            case 2: return df.format(m.getMonto());
+            case 3: return df.format(m.getInteres());
+            case 4: return df.format(m.getAmortizacion());
             default: return "";
         }
     }    
