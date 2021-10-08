@@ -67,10 +67,11 @@ public class Controller {
     public void clienteAdd(Cliente cliente){
         try {
             if (this.clienteGet(cliente.getCedula()) != null) {
-                Cliente clien = this.clienteGet(cliente.getCedula());
-                //clientes.remove(clien);
+                clienteUpdate(cliente);
             }
+            else{
             Service.instance().clienteAdd(cliente);
+            }
             Provincia p = model.getProvincias().get(0);
             Canton c = p.getCantones().get(0);
             Distrito d = c.getDistritos().get(0);
@@ -85,6 +86,20 @@ public class Controller {
     public void clienteEdit(Cliente cliente){
         model.setCliente(cliente);
         model.commit();
+    }
+    
+    public void clienteUpdate(Cliente cliente){
+        try {
+            Service.instance().clienteUpdate(cliente);
+            Provincia p = model.getProvincias().get(0);
+            Canton c = p.getCantones().get(0);
+            Distrito d = c.getDistritos().get(0);
+            model.setCliente(new Cliente("","",p, c, d));
+            model.setClientes(Arrays.asList(cliente));
+            model.commit();
+        } catch (Exception ex) {
+            
+        }
     }
     
     public void prestamosShow(){
