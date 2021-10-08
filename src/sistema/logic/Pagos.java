@@ -5,20 +5,23 @@ import java.util.Calendar;
 public class Pagos {
 
     String numero;
-    Calendar fecha;
+    String fecha;
+    Calendar fech;
     double monto;
     double interes;
     double amortizacion;
 
-    public Pagos(String n, double m, double i, double a) {
-        numero = n;
+    public Pagos(double m, double tasa) {
+       // numero = n;
+        setFecha();
         monto = m;
-        interes = i;
-        amortizacion = a;
+        setInteres(tasa);
+        setAmortizacion();
     }
 
     public Pagos() {
         numero = "0";
+        fecha = null;
         monto = 0;
         interes = 0;
         amortizacion = 0;
@@ -32,6 +35,14 @@ public class Pagos {
         return monto;
     }
 
+    public void setInteres(double tasa) {
+        this.interes = monto * tasa/100;
+    }
+
+    public void setAmortizacion() {
+        this.amortizacion = this.monto - this.interes;
+    }
+    
     public double getInteres() {
         return interes;
     }
@@ -40,12 +51,15 @@ public class Pagos {
         return amortizacion;
     }
 
-    public Calendar getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Calendar fecha) {
-        this.fecha = fecha;
+    public void setFecha() {
+        int año = fech.get(Calendar.YEAR);
+        int mes = fech.get(Calendar.MONTH);
+        int dia = fech.get(Calendar.DAY_OF_MONTH);
+        this.fecha = dia+"/"+mes+"/"+año+"/";
     }
 
     @Override  
