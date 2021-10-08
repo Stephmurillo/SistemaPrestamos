@@ -76,6 +76,6 @@ public class Controller {
     
     public void prestamosShow(){
         this.hide();
-        Application.PRESTAMOS.show(model.getCliente());
+        Application.PRESTAMOS.show();
     }  
 }

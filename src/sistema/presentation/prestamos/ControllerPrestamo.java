@@ -21,10 +21,7 @@ public class ControllerPrestamo {
         view.setController(this);
     }
     
-    public void show(Cliente c){
-        model.setCliente(c);
-        model.setPrestamos(Service.instance().getPrestamosXCliente(c.getCedula()));
-        model.commit();
+    public void show(){
         this.view.setVisible(true);
     }
     

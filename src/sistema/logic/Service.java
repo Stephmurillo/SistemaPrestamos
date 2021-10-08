@@ -99,11 +99,5 @@ public class Service {
         
     }
     
-    public List<Prestamo> getPrestamosXCliente(String ID){
-        List<Prestamo> prestamos;
-        prestamos = data.getPrestamos().stream().filter(p->p.getCliente().getCedula().startsWith(ID)).collect(Collectors.toList());
-        return prestamos;
-    }
-    
     private Data data;
 }
