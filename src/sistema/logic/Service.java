@@ -36,7 +36,7 @@ public class Service {
         return data.getPrestamos();       
     }
      
-      public List<Pagos> mensualidadAll(){
+      public List<Pagos> pagoAll(){
         return data.getMensualidades();       
     }
      
@@ -65,9 +65,10 @@ public class Service {
         else throw new Exception("Prestamo ya existe");     
     } 
     
-    public void mensualidadAdd(Pagos mensualidad) throws Exception{
-        Pagos old = data.getMensualidades().stream().filter(c->c.getNumero().equals(mensualidad.getNumero())).findFirst().orElse(null);
-        if (old==null) data.getMensualidades().add(mensualidad);
+    public void pagoAdd(String cod,Pagos pago) throws Exception{
+        Prestamo pres = data.getPrestamos().stream().filter(c->c.getCodigo().equals(cod)).findFirst().orElse(null);
+        Pagos old = pres.getPagos().stream().filter(c->c.getNumero().equals(pago.getNumero())).findFirst().orElse(null);
+        if (old==null) data.getMensualidades().add(pago);
         else throw new Exception("Mensualidad ya existe");     
     } 
     
