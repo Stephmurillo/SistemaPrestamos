@@ -68,7 +68,7 @@ public class Controller {
         try {
             if (this.clienteGet(cliente.getCedula()) != null) {
                 Cliente clien = this.clienteGet(cliente.getCedula());
-                //clientes.remove(clien);
+                model.clientes.remove(clien);
             }
             Service.instance().clienteAdd(cliente);
             Provincia p = model.getProvincias().get(0);
