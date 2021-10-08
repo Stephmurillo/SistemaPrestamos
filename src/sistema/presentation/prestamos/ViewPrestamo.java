@@ -1,6 +1,8 @@
 package sistema.presentation.prestamos;
 
 import java.util.Observable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import sistema.logic.Prestamo;
 
 public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observer{
@@ -38,9 +40,15 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
     public ViewPrestamo() {
         
         initComponents();
+        this.jTablePrestamosC.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+            public void valueChanged(ListSelectionEvent event) {
+                jButtonMostrarPago.setEnabled(true);
+               // System.out.println(jTablePrestamosC.getValueAt(jTablePrestamosC.getSelectedRow(), 0).toString());
+            }
+        });
         //this.setTitle(model.getCliente().getNombre());
     }
-
+  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -58,7 +66,7 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
         jButtonAnadir = new javax.swing.JButton();
         jButtonBuscar = new javax.swing.JButton();
         jButtonListar = new javax.swing.JButton();
-        jButtonRealizarPago = new javax.swing.JButton();
+        jButtonMostrarPago = new javax.swing.JButton();
         jButtonRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -106,10 +114,11 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
             }
         });
 
-        jButtonRealizarPago.setText("Mostrar Pagos");
-        jButtonRealizarPago.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMostrarPago.setText("Mostrar Pagos");
+        jButtonMostrarPago.setEnabled(false);
+        jButtonMostrarPago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRealizarPagoActionPerformed(evt);
+                jButtonMostrarPagoActionPerformed(evt);
             }
         });
 
@@ -156,11 +165,12 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
                                 .addComponent(jButtonListar))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonRealizarPago))
+                                .addGap(126, 126, 126)
+                                .addComponent(jButtonMostrarPago)
+                                .addGap(34, 34, 34)
+                                .addComponent(jButtonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
@@ -186,7 +196,7 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonRealizarPago)
+                    .addComponent(jButtonMostrarPago)
                     .addComponent(jButtonRegresar))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
@@ -197,14 +207,15 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
     private void jButtonAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnadirActionPerformed
         controller.prestamoAdd(model.getCliente().getCedula(), new Prestamo(jTextFieldCodigo.getText(),Double.parseDouble(jTextFieldMonto.getText()),Double.parseDouble(jTextFieldTasa.getText()) ,Double.parseDouble(jTextFieldPlazo.getText()))); 
         model.setPrestamos(model.getPrestamos());
-        System.out.println( model.getPrestamos().toString());
     }//GEN-LAST:event_jButtonAnadirActionPerformed
 
-    private void jButtonRealizarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRealizarPagoActionPerformed
-        sistema.presentation.pagos.ModelPagos modelMensualidades = new sistema.presentation.pagos.ModelPagos();
-        modelMensualidades.setPrestamo(this.model.getPrestamos().get(jTablePrestamosC.getSelectedRow()));
-        controller.mensualidadShow();
-    }//GEN-LAST:event_jButtonRealizarPagoActionPerformed
+    private void jButtonMostrarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarPagoActionPerformed
+       if(jTablePrestamosC.getSelectedRow() != -1){
+            sistema.presentation.pagos.ModelPagos modelMensualidades = new sistema.presentation.pagos.ModelPagos();
+            modelMensualidades.setPrestamo(this.model.getPrestamos().get(jTablePrestamosC.getSelectedRow()));
+            controller.mensualidadShow();
+       } 
+    }//GEN-LAST:event_jButtonMostrarPagoActionPerformed
 
     private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
         controller.hide();
@@ -217,6 +228,7 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         controller.prestamoGet(jTextFieldCodigo.getText());
     }//GEN-LAST:event_jButtonBuscarActionPerformed
+
 
     public static void main(String args[]) {
        
@@ -232,7 +244,7 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
     private javax.swing.JButton jButtonAnadir;
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonListar;
-    private javax.swing.JButton jButtonRealizarPago;
+    private javax.swing.JButton jButtonMostrarPago;
     private javax.swing.JButton jButtonRegresar;
     private javax.swing.JLabel jLabelCodigo;
     private javax.swing.JLabel jLabelMonto;
