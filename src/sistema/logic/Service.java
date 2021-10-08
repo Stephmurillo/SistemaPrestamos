@@ -58,6 +58,15 @@ public class Service {
         else throw new Exception("Cliente ya existe");     
     }   
     
+    public void clienteUpdate(Cliente cliente){
+        Cliente old = data.getClientes().stream().filter(f->f.getCedula().equals(cliente.getCedula())).findFirst().orElse(null);
+        if (old == null) data.getClientes().add(cliente);
+        else {
+            data.getClientes().remove(old);
+            data.getClientes().add(cliente);
+        }         
+    } 
+    
     public void prestamoAdd(String ced, Prestamo prestamo) throws Exception{
         Cliente clie = data.getClientes().stream().filter(c->c.getCedula().equals(ced)).findFirst().orElse(null);
         Prestamo old =clie.getPrestamos().stream().filter(c->c.getCodigo().equals(prestamo.getCodigo())).findFirst().orElse(null);
