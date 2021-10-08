@@ -4,10 +4,9 @@
 */
 
 // ARREGLAR:
-// - Actualización de cliente.
 // - Que aparezca el nombre del cliente en la ventana de prestamos.
+// - Arreglar el botón de listar en prestamos view.
 // - Setear valores en el pago.
-// - En mapa no se queda marcada la provincia.
 
 package sistema;
 

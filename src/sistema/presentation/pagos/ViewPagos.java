@@ -52,6 +52,7 @@ public class ViewPagos extends javax.swing.JFrame implements java.util.Observer{
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("PAGOS");
         setResizable(false);
 
         jTablePagos.setModel(new javax.swing.table.DefaultTableModel(

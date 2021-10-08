@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import sistema.Application;
 import sistema.logic.Pagos;
-import sistema.logic.Prestamo;
 import sistema.logic.Service;
 
 public class ControllerPagos {
