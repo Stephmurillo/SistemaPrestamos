@@ -1,40 +1,40 @@
-package sistema.presentation.mensualidades;
+package sistema.presentation.pagos;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import sistema.logic.Cliente;
-import sistema.logic.Mensualidad;
+import sistema.logic.Pagos;
 import sistema.logic.Prestamo;
 
-public class Model extends Observable{
+public class ModelPagos extends Observable{
     Cliente cliente;
     Prestamo prestamo;
-    Mensualidad mensualidad;
-    List<Mensualidad> mensualidades;
+    Pagos mensualidad;
+    List<Pagos> mensualidades;
 
-    public Model(){
+    public ModelPagos(){
      cliente = new Cliente();
      prestamo = new Prestamo();
      mensualidades = new ArrayList<>();
-     mensualidad = new Mensualidad();
+     mensualidad = new Pagos();
      }
    
     
-    public List<Mensualidad> getMensualidades() {
+    public List<Pagos> getPagos() {
         return mensualidades;
     }
 
-    public void setMensualidades(List<Mensualidad> mensualidades) {
+    public void setPagos(List<Pagos> mensualidades) {
         this.mensualidades = mensualidades;
     }
     
-    public Mensualidad getMensualidad() {
+    public Pagos getMensualidad() {
         return mensualidad;
     }
 
-    public void setMensualidad(Mensualidad mensualidad) {
+    public void setMensualidad(Pagos mensualidad) {
         this.mensualidad = mensualidad;
     }
 

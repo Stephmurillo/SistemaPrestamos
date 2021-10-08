@@ -36,7 +36,7 @@ public class Service {
         return data.getPrestamos();       
     }
      
-      public List<Mensualidad> mensualidadAll(){
+      public List<Pagos> mensualidadAll(){
         return data.getMensualidades();       
     }
      
@@ -58,14 +58,15 @@ public class Service {
         else throw new Exception("Cliente ya existe");     
     }   
     
-    public void prestamoAdd(Prestamo prestamo) throws Exception{
-        Prestamo old=data.getPrestamos().stream().filter(c->c.getCodigo().equals(prestamo.getCodigo())).findFirst().orElse(null);
+    public void prestamoAdd(String ced, Prestamo prestamo) throws Exception{
+        Cliente clie = data.getClientes().stream().filter(c->c.getCedula().equals(ced)).findFirst().orElse(null);
+        Prestamo old =clie.getPrestamos().stream().filter(c->c.getCodigo().equals(prestamo.getCodigo())).findFirst().orElse(null);
         if (old==null) data.getPrestamos().add(prestamo);
         else throw new Exception("Prestamo ya existe");     
     } 
     
-    public void mensualidadAdd(Mensualidad mensualidad) throws Exception{
-        Mensualidad old = data.getMensualidades().stream().filter(c->c.getNumero().equals(mensualidad.getNumero())).findFirst().orElse(null);
+    public void mensualidadAdd(Pagos mensualidad) throws Exception{
+        Pagos old = data.getMensualidades().stream().filter(c->c.getNumero().equals(mensualidad.getNumero())).findFirst().orElse(null);
         if (old==null) data.getMensualidades().add(mensualidad);
         else throw new Exception("Mensualidad ya existe");     
     } 
@@ -78,7 +79,7 @@ public class Service {
     
     public List<Prestamo> prestamoSearch(String ced,String codigo){
        Cliente clie = data.getClientes().stream().filter(c->c.getCedula().equals(ced)).findFirst().orElse(null);
-       List<Prestamo> result = clie.getPrestamos().stream().filter(c->c.getCodigo().startsWith(codigo)).collect(Collectors.toList());
+       List<Prestamo> result = clie.getPrestamos();
        return result;        
     }
     

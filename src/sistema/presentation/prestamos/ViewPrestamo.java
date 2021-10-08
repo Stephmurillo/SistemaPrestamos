@@ -36,9 +36,9 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
     }
    
     public ViewPrestamo() {
-                this.setTitle(model.getCliente().getNombre());
-
+        
         initComponents();
+        //this.setTitle(model.getCliente().getNombre());
     }
 
     @SuppressWarnings("unchecked")
@@ -106,7 +106,7 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
             }
         });
 
-        jButtonRealizarPago.setText("Mostrar Mensualidades");
+        jButtonRealizarPago.setText("Mostrar Pagos");
         jButtonRealizarPago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRealizarPagoActionPerformed(evt);
@@ -156,14 +156,13 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
                                 .addComponent(jButtonListar))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonRealizarPago))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(17, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButtonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(jButtonRealizarPago)
-                .addGap(70, 70, 70))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,13 +195,13 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnadirActionPerformed
-        model.cliente.getPrestamos().add(new Prestamo(jTextFieldCodigo.getText(),Double.parseDouble(jTextFieldMonto.getText()),Double.parseDouble(jTextFieldTasa.getText()) ,Double.parseDouble(jTextFieldPlazo.getText()))); 
-        model.setPrestamos(model.cliente.getPrestamos());
+        controller.prestamoAdd(model.getCliente().getCedula(), new Prestamo(jTextFieldCodigo.getText(),Double.parseDouble(jTextFieldMonto.getText()),Double.parseDouble(jTextFieldTasa.getText()) ,Double.parseDouble(jTextFieldPlazo.getText()))); 
+        model.setPrestamos(model.getPrestamos());
         System.out.println( model.getPrestamos().toString());
     }//GEN-LAST:event_jButtonAnadirActionPerformed
 
     private void jButtonRealizarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRealizarPagoActionPerformed
-        sistema.presentation.mensualidades.Model modelMensualidades = new sistema.presentation.mensualidades.Model();
+        sistema.presentation.pagos.ModelPagos modelMensualidades = new sistema.presentation.pagos.ModelPagos();
         modelMensualidades.setPrestamo(this.model.getPrestamos().get(jTablePrestamosC.getSelectedRow()));
         controller.mensualidadShow();
     }//GEN-LAST:event_jButtonRealizarPagoActionPerformed

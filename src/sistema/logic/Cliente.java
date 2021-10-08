@@ -1,5 +1,6 @@
 package sistema.logic;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -25,6 +26,7 @@ public class Cliente {
         this.provincia = new Provincia();
         this.canton = new Canton();
         this.distrito  = new Distrito();
+        this.prestamos = new ArrayList<>();
         this.cedula = "";
         this.nombre = "";
     }
@@ -34,6 +36,7 @@ public class Cliente {
         this.nombre = nombre;
         this.provincia = provincia;
         this.canton = canton;
+        this.prestamos = new ArrayList<>();
         this.distrito  = distrito;
     }
 
