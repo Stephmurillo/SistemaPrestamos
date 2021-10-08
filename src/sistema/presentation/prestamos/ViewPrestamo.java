@@ -35,18 +35,16 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
     @Override
     public void update(Observable o, Object arg) {
          jTablePrestamosC.setModel(new PrestamosJTableModel(model.getCliente().getPrestamos()));
+         this.setTitle(model.getCliente().getNombre());
     }
    
     public ViewPrestamo() {
         
         initComponents();
-        this.jTablePrestamosC.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-            public void valueChanged(ListSelectionEvent event) {
-                jButtonMostrarPago.setEnabled(true);
-               // System.out.println(jTablePrestamosC.getValueAt(jTablePrestamosC.getSelectedRow(), 0).toString());
-            }
+        this.jTablePrestamosC.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
+            jButtonMostrarPago.setEnabled(true);
+            // System.out.println(jTablePrestamosC.getValueAt(jTablePrestamosC.getSelectedRow(), 0).toString());
         });
-        this.setTitle(model.getCliente().getNombre());
     }
   
     @SuppressWarnings("unchecked")

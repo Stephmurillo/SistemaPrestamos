@@ -77,4 +77,9 @@ public class ControllerPrestamo {
         model.commit();
     }
     
+    public void setCliente(Cliente cliente){
+        this.model.setCliente(cliente);
+        this.model.setPrestamos(cliente.getPrestamos());
+        this.model.commit();
+    }
 }
