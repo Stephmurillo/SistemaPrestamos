@@ -38,12 +38,16 @@ public class ViewCliente extends javax.swing.JFrame implements java.util.Observe
         cedula.setText(cliente.getCedula());
         nombre.setText(cliente.getNombre());
         jTextFieldProvincia.setText(cliente.getProvincia().getNombre());
-        jComboBoxCantones.setModel(new DefaultComboBoxModel(cliente.getProvincia().getCantones().toArray()));
-        jComboBoxCantones.setSelectedItem(cliente.getCanton());
-        jComboBoxDistritos.setModel(new DefaultComboBoxModel(cliente.getCanton().getDistritos().toArray()));
-        jComboBoxDistritos.setSelectedItem(cliente.getDistrito());
-        this.provincia = Integer.parseInt(cliente.getProvincia().getNumero());
-        ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[provincia]));
+        if (cliente.getProvincia().getCantones() != null) {
+            this.provinciaSelected = Integer.parseInt(cliente.getProvincia().getNumero());
+            jComboBoxCantones.setModel(new DefaultComboBoxModel(cliente.getProvincia().getCantones().toArray()));
+            jComboBoxCantones.setSelectedItem(cliente.getCanton());
+            if (cliente.getProvincia().getCantones() != null) {
+                jComboBoxDistritos.setModel(new DefaultComboBoxModel(cliente.getCanton().getDistritos().toArray()));
+                jComboBoxDistritos.setSelectedItem(cliente.getDistrito());
+            }
+        }
+        ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[provinciaSelected]));
         this.flag.setIcon(imageIcon);
         
     }
@@ -309,8 +313,8 @@ public class ViewCliente extends javax.swing.JFrame implements java.util.Observe
                 this.flag.setText(MESSAGE);
             }  
         } else {
-            provinciaSelected = 0;
-            ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[this.provinciaSelected]));
+            provincia = 0;
+            ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/flags/"+ this.imagenes[this.provincia]));
             this.flag.setIcon(imageIcon);
         }
     }//GEN-LAST:event_flagMouseMoved
@@ -342,7 +346,6 @@ public class ViewCliente extends javax.swing.JFrame implements java.util.Observe
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         if (!"".equals(cedula.getText()) && !"".equals(nombre.getText()) && provin != null && jComboBoxCantones.getSelectedItem() != null && jComboBoxDistritos.getSelectedItem() != null) {
-            jLabelDont.setText("");
             controller.clienteAdd(new Cliente(cedula.getText(), nombre.getText(), provin, (Canton) jComboBoxCantones.getSelectedItem(), (Distrito) jComboBoxDistritos.getSelectedItem()));
         } else if("".equals(cedula.getText()) || "".equals(nombre.getText()) || provin == null || jComboBoxCantones.getSelectedItem() == null || jComboBoxDistritos.getSelectedItem() == null) {
             jLabelDont.setText("Complete todos los campos!");

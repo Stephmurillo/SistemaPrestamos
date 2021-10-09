@@ -4,9 +4,9 @@
 */
 
 // ARREGLAR:
-// - Actualización de cliente.
 // - Que aparezca el nombre del cliente en la ventana de prestamos.
-//
+// - Arreglar el botón de listar en prestamos view.
+// - Setear valores en el pago.
 
 package sistema;
 
