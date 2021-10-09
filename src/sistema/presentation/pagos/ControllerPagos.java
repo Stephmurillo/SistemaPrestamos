@@ -43,23 +43,20 @@ public class ControllerPagos {
     
     public void pago(int row){
         Pagos pago = model.getPagos().get(row);
-       /* if(pago.getEstado() == false){
-            pago.setEstado(true);
-        }*/
         model.commit();
     }
     
-//     public Prestamo prestamoGet(String cedula){
-//        Prestamo prestamo = new Prestamo();
-//        try {
-//            prestamo = Service.instance().clienteGet(cedula);
-//            model.setCliente(prestamo);
-//            model.commit();
-//            return prestamo;
-//        } catch (Exception ex) {
-//            model.setPrestamo(new Prestamo());
-//            model.commit();
-//        }
-//        return null;
-//    }
+     public Prestamo prestamoGet(String cedula){
+        Prestamo prestamo = new Prestamo();
+        try {
+            prestamo = Service.instance().prestamoGet(cedula);
+            model.setPrestamo(prestamo);
+            model.commit();
+            return prestamo;
+        } catch (Exception ex) {
+            model.setPrestamo(new Prestamo());
+            model.commit();
+        }
+        return null;
+    }
 }
