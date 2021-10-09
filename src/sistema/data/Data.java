@@ -48,6 +48,12 @@ public class Data {
         return prestamos;
     }
     
+    public List<Prestamo> getPrestamosXCliente(String ced) {
+        Cliente clien = this.getClientes().stream().filter(c->c.getCedula().equals(ced)).findFirst().orElse(null);
+        prestamos = clien.getPrestamos();
+        return prestamos;
+    }
+    
     public void setMensualidades(List<Pagos> mensualidades) {
         this.mensualidades = mensualidades;
     }

@@ -347,6 +347,7 @@ public class ViewCliente extends javax.swing.JFrame implements java.util.Observe
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         if (!"".equals(cedula.getText()) && !"".equals(nombre.getText()) && provin != null && jComboBoxCantones.getSelectedItem() != null && jComboBoxDistritos.getSelectedItem() != null) {
             controller.clienteAdd(new Cliente(cedula.getText(), nombre.getText(), provin, (Canton) jComboBoxCantones.getSelectedItem(), (Distrito) jComboBoxDistritos.getSelectedItem()));
+            jLabelDont.setText("");
         } else if("".equals(cedula.getText()) || "".equals(nombre.getText()) || provin == null || jComboBoxCantones.getSelectedItem() == null || jComboBoxDistritos.getSelectedItem() == null) {
             jLabelDont.setText("Complete todos los campos!");
         }

@@ -34,19 +34,21 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
      */
     @Override
     public void update(Observable o, Object arg) {
-         jTablePrestamosC.setModel(new PrestamosJTableModel(model.getCliente().getPrestamos()));
+        jTextFieldCodigo.setText("");
+        jTextFieldMonto.setText("");
+        jTextFieldPlazo.setText("");
+        jTextFieldTasa.setText("");
+        jTablePrestamosC.setModel(new PrestamosJTableModel(model.getCliente().getPrestamos()));
+        this.setTitle(model.getCliente().getNombre());
     }
    
     public ViewPrestamo() {
         
         initComponents();
-        this.jTablePrestamosC.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-            public void valueChanged(ListSelectionEvent event) {
-                jButtonMostrarPago.setEnabled(true);
-               // System.out.println(jTablePrestamosC.getValueAt(jTablePrestamosC.getSelectedRow(), 0).toString());
-            }
+        this.jTablePrestamosC.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
+            jButtonMostrarPago.setEnabled(true);
+            // System.out.println(jTablePrestamosC.getValueAt(jTablePrestamosC.getSelectedRow(), 0).toString());
         });
-        this.setTitle(model.getCliente().getNombre());
     }
   
     @SuppressWarnings("unchecked")
@@ -68,6 +70,9 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
         jButtonListar = new javax.swing.JButton();
         jButtonMostrarPago = new javax.swing.JButton();
         jButtonRegresar = new javax.swing.JButton();
+        DontLbl = new javax.swing.JLabel();
+        DontLbl2 = new javax.swing.JLabel();
+        DontLbl3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
@@ -134,46 +139,60 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabelMonto)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelCodigo)
-                                .addGap(7, 7, 7)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                            .addComponent(jTextFieldMonto))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelTasa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextFieldTasa, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabelPlazo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 84, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabelMonto)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelCodigo)
+                                        .addGap(7, 7, 7)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldMonto))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelTasa)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jTextFieldTasa, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabelPlazo)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextFieldPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jButtonAnadir)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(jButtonBuscar)
+                                        .addGap(31, 31, 31)
+                                        .addComponent(jButtonListar)
+                                        .addGap(40, 40, 40))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButtonAnadir)
-                                .addGap(28, 28, 28)
-                                .addComponent(jButtonBuscar)
-                                .addGap(31, 31, 31)
-                                .addComponent(jButtonListar)
-                                .addGap(40, 40, 40))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addGap(308, 308, 308)
+                                .addComponent(DontLbl))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(110, 110, 110)
+                                        .addComponent(jButtonMostrarPago))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(52, 52, 52)
+                                        .addComponent(DontLbl3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(61, 61, 61)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButtonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(DontLbl2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonMostrarPago)
-                .addGap(86, 86, 86)
-                .addComponent(jButtonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,19 +214,38 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
                     .addComponent(jTextFieldPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DontLbl2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DontLbl3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DontLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonMostrarPago)
-                    .addComponent(jButtonRegresar))
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addComponent(jButtonRegresar)
+                    .addComponent(jButtonMostrarPago))
+                .addGap(12, 12, 12))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnadirActionPerformed
-        controller.prestamoAdd(model.getCliente().getCedula(), new Prestamo(jTextFieldCodigo.getText(),Double.parseDouble(jTextFieldMonto.getText()),Double.parseDouble(jTextFieldTasa.getText()) ,Double.parseDouble(jTextFieldPlazo.getText()))); 
-        model.setPrestamos(model.getPrestamos());
+        try {
+            if ("".equals(jTextFieldMonto.getText()) || "".equals(jTextFieldPlazo.getText()) || "".equals(jTextFieldTasa.getText())) {
+                DontLbl2.setText("Complete todos los campos!");
+                DontLbl3.setText("Digite solo numeros!");
+            } else {
+                controller.prestamoAdd(model.getCliente().getCedula(), new Prestamo(jTextFieldCodigo.getText(), Double.parseDouble(jTextFieldMonto.getText()), Double.parseDouble(jTextFieldTasa.getText()), Double.parseDouble(jTextFieldPlazo.getText())));
+                DontLbl2.setText("");
+                DontLbl3.setText("");
+            }
+            model.setPrestamos(model.getPrestamos());
+        }
+        catch(Exception ex){
+            
+        }
+        
     }//GEN-LAST:event_jButtonAnadirActionPerformed
 
     private void jButtonMostrarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarPagoActionPerformed
@@ -223,7 +261,7 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
     }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
-        controller.prestamoSearch(model.getCliente().getCedula(),jTextFieldCodigo.getText());
+        controller.prestamoSearch(model.getCliente().getCedula());
     }//GEN-LAST:event_jButtonListarActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
@@ -231,6 +269,9 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
     }//GEN-LAST:event_jButtonBuscarActionPerformed
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel DontLbl;
+    private javax.swing.JLabel DontLbl2;
+    private javax.swing.JLabel DontLbl3;
     private javax.swing.JButton jButtonAnadir;
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonListar;

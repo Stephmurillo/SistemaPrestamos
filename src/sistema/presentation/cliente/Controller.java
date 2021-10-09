@@ -104,6 +104,7 @@ public class Controller {
     
     public void prestamosShow(){
         this.hide();
+        Application.PRESTAMOS.setCliente(model.getCliente());
         Application.PRESTAMOS.show(model.getCliente());
     }  
 }
