@@ -4,8 +4,9 @@
 */
 
 // ARREGLAR:
-// - Que aparezca el nombre del cliente en la ventana de prestamos.
 // - Arreglar el botón de listar en prestamos view.
+// - Cargar la lista de prestamos del cliente en el jTable de prestamos.
+
 // - Setear valores en el pago.
 // - Manejar excepciones en la view de pago, no permitir ingresar strings.
 
