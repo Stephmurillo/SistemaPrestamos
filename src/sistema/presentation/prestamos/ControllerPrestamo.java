@@ -35,9 +35,9 @@ public class ControllerPrestamo {
         Application.CLIENTES.show();
     }
     
-    public void prestamoAdd(String ced,Prestamo prestamo){
+    public void prestamoAdd(String ced, Prestamo prestamo){
         try {
-            Service.instance().prestamoAdd(ced,prestamo);
+            Service.instance().prestamoAdd(ced, prestamo);
             model.setPrestamo(new Prestamo("", 0, 0, 0));
             model.setPrestamos(Arrays.asList(prestamo));
             model.commit();
@@ -70,12 +70,16 @@ public class ControllerPrestamo {
         Application.MENSUALIDADES.show();
     } 
     
-    public void prestamoSearch(String ced,String codigo){
-        List<Prestamo> prestamos = Service.instance().prestamoSearch(ced,codigo);
-        model.setPrestamo(new Prestamo(codigo, 0, 0, 0));
+    public void prestamoSearch(String ced){
+        List<Prestamo> prestamos = Service.instance().prestamoSearch(ced);
+        model.setPrestamo(new Prestamo("", 0, 0, 0));
         model.setPrestamos(prestamos);
         model.commit();
     }
     
-    
+    public void setCliente(Cliente cliente){
+        this.model.setCliente(cliente);
+        this.model.setPrestamos(cliente.getPrestamos());
+        this.model.commit();
+    }
 }
