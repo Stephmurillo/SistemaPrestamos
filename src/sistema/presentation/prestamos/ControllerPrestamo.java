@@ -1,5 +1,6 @@
 package sistema.presentation.prestamos;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -46,9 +47,9 @@ public class ControllerPrestamo {
         }
     }
     
-    public void prestamoGet(String numero){
+    public void prestamoGet(String ced, String numero){
         try {
-            Prestamo prestamo = Service.instance().prestamoGet(numero);
+            Prestamo prestamo = Service.instance().prestamoGet(ced, numero);
             model.setPrestamo(prestamo);
             model.setPrestamos(Arrays.asList(prestamo));
             model.commit();
@@ -81,5 +82,9 @@ public class ControllerPrestamo {
         this.model.setCliente(cliente);
         this.model.setPrestamos(cliente.getPrestamos());
         this.model.commit();
+    }
+    
+    void createPdfPrestamos(List<Prestamo> prestamos) throws IOException{
+        Application.createPdfPrestamos(model.getPrestamos());
     }
 }

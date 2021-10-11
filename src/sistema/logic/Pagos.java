@@ -12,7 +12,6 @@ public class Pagos {
     double amortizacion;
 
     public Pagos(double m, double tasa) {
-       // numero = n;
         setFecha();
         monto = m;
         setInteres(tasa);
