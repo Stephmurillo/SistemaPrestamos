@@ -3,6 +3,7 @@ package sistema.presentation.pagos;
 import java.util.Observable;
 import sistema.logic.Pagos;
 import sistema.logic.Prestamo;
+import sistema.presentation.prestamos.PrestamosJTableModel;
 
 public class ViewPagos extends javax.swing.JFrame implements java.util.Observer{
 
@@ -28,6 +29,9 @@ public class ViewPagos extends javax.swing.JFrame implements java.util.Observer{
     
     @Override
     public void update(Observable o, Object arg) {
+       jTablePagos.setModel(new PagosTableModel(model.getPrestamo().getPagos()));
+       jTextFieldSaldo.setText(Double.toString(model.getPrestamo().getMonto()));
+       jTextFieldCuota.setText(Double.toString(model.getPrestamo().getCuota()));
        
     }
     
@@ -46,9 +50,9 @@ public class ViewPagos extends javax.swing.JFrame implements java.util.Observer{
         DontLbl = new javax.swing.JLabel();
         jButtonRegresar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldSaldo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTextFieldCuota = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jButtonPDF = new javax.swing.JButton();
 
@@ -90,11 +94,14 @@ public class ViewPagos extends javax.swing.JFrame implements java.util.Observer{
 
         jLabel1.setText("Saldo actual:");
 
+        jTextFieldSaldo.setEditable(false);
+
         jLabel2.setText("Monto de cuota:");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldCuota.setEditable(false);
+        jTextFieldCuota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jTextFieldCuotaActionPerformed(evt);
             }
         });
 
@@ -125,11 +132,11 @@ public class ViewPagos extends javax.swing.JFrame implements java.util.Observer{
                         .addGap(48, 48, 48)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(78, 78, 78)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldCuota, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -149,9 +156,9 @@ public class ViewPagos extends javax.swing.JFrame implements java.util.Observer{
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldCuota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
@@ -206,9 +213,9 @@ public class ViewPagos extends javax.swing.JFrame implements java.util.Observer{
         controller.hide();
     }//GEN-LAST:event_jButtonRegresarActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jTextFieldCuotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCuotaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jTextFieldCuotaActionPerformed
 
     private void jButtonPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPDFActionPerformed
         try{
@@ -235,7 +242,7 @@ public class ViewPagos extends javax.swing.JFrame implements java.util.Observer{
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablePagos;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextFieldCuota;
+    private javax.swing.JTextField jTextFieldSaldo;
     // End of variables declaration//GEN-END:variables
 }

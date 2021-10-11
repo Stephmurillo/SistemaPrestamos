@@ -1,6 +1,7 @@
 package sistema.logic;
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
@@ -13,7 +14,7 @@ public class Prestamo {
     private double monto;
     private double tasa;
     private double plazo;
-    ArrayList<Pagos> pagos = new ArrayList<>();
+    List<Pagos> pagos = new ArrayList<>();
 
     public Prestamo(String cod, double m, double t, double p) {
         this.codigo = cod;
@@ -69,11 +70,11 @@ public class Prestamo {
         return total;
     }
 
-    public ArrayList<Pagos> getPagos() {
+    public List<Pagos> getPagos() {
        return this.pagos;
     }
 
-    public void setPagos(ArrayList<Pagos> pagos) {
+    public void setPagos(List<Pagos> pagos) {
         this.pagos = pagos;
     }
 

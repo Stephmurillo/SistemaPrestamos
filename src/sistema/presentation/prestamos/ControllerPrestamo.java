@@ -68,7 +68,7 @@ public class ControllerPrestamo {
     
     public void mensualidadShow(){
         this.hide();
-        Application.MENSUALIDADES.show();
+        Application.PAGOS.show();
     } 
     
     public void prestamoSearch(String ced){

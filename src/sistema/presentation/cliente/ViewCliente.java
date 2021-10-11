@@ -82,11 +82,6 @@ public class ViewCliente extends javax.swing.JFrame implements java.util.Observe
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CLIENTE");
         setResizable(false);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
-        });
 
         jLabelCedula.setText("Cedula");
 
@@ -183,7 +178,7 @@ public class ViewCliente extends javax.swing.JFrame implements java.util.Observe
                                 .addComponent(flag)
                                 .addGap(65, 65, 65)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButtonPdf, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                                    .addComponent(jButtonPdf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButtonPrestamo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,6 +367,8 @@ public class ViewCliente extends javax.swing.JFrame implements java.util.Observe
     }//GEN-LAST:event_jTextFieldProvinciaActionPerformed
 
     private void jButtonPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrestamoActionPerformed
+        sistema.presentation.prestamos.ModelPrestamo modelPrest = new sistema.presentation.prestamos.ModelPrestamo();
+        modelPrest.setCliente(this.model.getCliente());
         controller.prestamosShow();
     }//GEN-LAST:event_jButtonPrestamoActionPerformed
 
@@ -381,10 +378,6 @@ public class ViewCliente extends javax.swing.JFrame implements java.util.Observe
         }catch(Exception ex){}
         
     }//GEN-LAST:event_jButtonPdfActionPerformed
-
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        controller.exit();
-    }//GEN-LAST:event_formWindowClosing
 
     public static void main(String[] args) {
         ViewCliente ventana = new ViewCliente();
