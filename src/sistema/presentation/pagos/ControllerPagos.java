@@ -1,7 +1,9 @@
 package sistema.presentation.pagos;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import sistema.Application;
 import sistema.logic.Pagos;
 import sistema.logic.Service;
@@ -25,13 +27,13 @@ public class ControllerPagos {
     
     public void hide(){
         this.view.setVisible(false);
-        Application.PRESTAMOS.hide();
+        Application.PRESTAMOS.show();
         Application.CLIENTES.hide();
     }
     
-    public void pagoAdd(String cod, String ced, Pagos pago){
+    public void pagoAdd(String cod, Pagos pago){
         try {
-            Service.instance().pagoAdd(cod,ced,pago);
+            Service.instance().pagoAdd(cod, pago);
             model.setMensualidad(new Pagos());
             model.setPagos(Arrays.asList(pago));
             model.commit();
@@ -42,18 +44,25 @@ public class ControllerPagos {
     
     public void pago(int row){
         Pagos pago = model.getPagos().get(row);
+       /* if(pago.getEstado() == false){
+            pago.setEstado(true);
+        }*/
         model.commit();
     }
     
-//     public Pago prestamoGet(String cod){
-//        Pago prestamo = new Pago();
+    void createPdfPagos(List<Pagos> pagos) throws IOException{
+        Application.createPdfPagos(model.getPagos());
+    }
+    
+//     public Prestamo prestamoGet(String cedula){
+//        Prestamo prestamo = new Prestamo();
 //        try {
-//            prestamo = Service.instance().prestamoGet(cod);
-//            model.setPago(prestamo);
+//            prestamo = Service.instance().clienteGet(cedula);
+//            model.setCliente(prestamo);
 //            model.commit();
 //            return prestamo;
 //        } catch (Exception ex) {
-//            model.setPago(new Pago());
+//            model.setPrestamo(new Prestamo());
 //            model.commit();
 //        }
 //        return null;

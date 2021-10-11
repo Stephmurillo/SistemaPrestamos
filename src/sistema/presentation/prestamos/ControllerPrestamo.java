@@ -1,5 +1,6 @@
 package sistema.presentation.prestamos;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,7 +39,7 @@ public class ControllerPrestamo {
     public void prestamoAdd(String ced, Prestamo prestamo){
         try {
             Service.instance().prestamoAdd(ced, prestamo);
-            model.setPrestamo(prestamo);
+            model.setPrestamo(new Prestamo("", 0, 0, 0));
             model.setPrestamos(Arrays.asList(prestamo));
             model.commit();
         } catch (Exception ex) {
@@ -46,9 +47,9 @@ public class ControllerPrestamo {
         }
     }
     
-    public void prestamoGet(String numero, String ced){
+    public void prestamoGet(String ced, String numero){
         try {
-            Prestamo prestamo = Service.instance().prestamoGet(numero,ced);
+            Prestamo prestamo = Service.instance().prestamoGet(ced, numero);
             model.setPrestamo(prestamo);
             model.setPrestamos(Arrays.asList(prestamo));
             model.commit();
@@ -65,13 +66,13 @@ public class ControllerPrestamo {
         model.commit();
     }
     
-    public void pagoShow(){
+    public void mensualidadShow(){
         this.hide();
         Application.MENSUALIDADES.show();
     } 
     
-    public void prestamoSearch(String cod){
-        List<Prestamo> prestamos = Service.instance().prestamoSearch(cod);
+    public void prestamoSearch(String ced){
+        List<Prestamo> prestamos = Service.instance().prestamoSearch(ced);
         model.setPrestamo(new Prestamo("", 0, 0, 0));
         model.setPrestamos(prestamos);
         model.commit();
@@ -81,5 +82,9 @@ public class ControllerPrestamo {
         this.model.setCliente(cliente);
         this.model.setPrestamos(cliente.getPrestamos());
         this.model.commit();
+    }
+    
+    void createPdfPrestamos(List<Prestamo> prestamos) throws IOException{
+        Application.createPdfPrestamos(model.getPrestamos());
     }
 }
