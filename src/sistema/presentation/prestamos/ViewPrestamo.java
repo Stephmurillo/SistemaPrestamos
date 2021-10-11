@@ -1,8 +1,8 @@
 package sistema.presentation.prestamos;
 
+import java.util.List;
 import java.util.Observable;
 import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import sistema.logic.Prestamo;
 
 public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observer{
@@ -37,7 +37,7 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
         jTextFieldCodigo.setText("");
         jTextFieldMonto.setText("");
         jTextFieldPlazo.setText("");
-        jTextFieldTasa.setText("");
+        jTextFieldTasa.setText(""); 
         jTablePrestamosC.setModel(new PrestamosJTableModel(model.getCliente().getPrestamos()));
         this.setTitle(model.getCliente().getNombre());
     }
@@ -236,16 +236,16 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
                 DontLbl2.setText("Complete todos los campos!");
                 DontLbl3.setText("Digite solo numeros!");
             } else {
-                controller.prestamoAdd(model.getCliente().getCedula(), new Prestamo(jTextFieldCodigo.getText(), Double.parseDouble(jTextFieldMonto.getText()), Double.parseDouble(jTextFieldTasa.getText()), Double.parseDouble(jTextFieldPlazo.getText())));
-                DontLbl2.setText("");
-                DontLbl3.setText("");
+                DontLbl3.setText("Prestamo añadido!");
+                controller.prestamoAdd(this.model.getCliente().getCedula(), new Prestamo(jTextFieldCodigo.getText(), Double.parseDouble(jTextFieldMonto.getText()), Double.parseDouble(jTextFieldTasa.getText()), Double.parseDouble(jTextFieldPlazo.getText())));
             }
             model.setPrestamos(model.getPrestamos());
+            controller.prestamoGet("");
+            DontLbl2.setText("");
         }
         catch(Exception ex){
             
         }
-        
     }//GEN-LAST:event_jButtonAnadirActionPerformed
 
     private void jButtonMostrarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarPagoActionPerformed
