@@ -12,6 +12,8 @@
 
 package sistema;
 
+import java.io.IOException;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -37,4 +39,47 @@ public class Application {
     public static sistema.presentation.prestamos.ControllerPrestamo PRESTAMOS;
     public static sistema.presentation.pagos.ControllerPagos MENSUALIDADES;
     
+//    public static void createPdf3(String dest) throws IOException {
+//        PdfFont font = PdfFontFactory.createFont(StandardFonts.HELVETICA);
+//        PdfWriter writer = new PdfWriter(dest);
+//        PdfDocument pdf = new PdfDocument(writer);
+//        Document document = new Document(pdf, PageSize.A4.rotate());
+//        document.setMargins(20, 20, 20, 20);
+//
+//        ImageData data = ImageDataFactory.create("logo.png");        
+//        Image img = new Image(data); 
+//        document.add(img);
+//        
+//        document.add(new Paragraph(""));
+//        document.add(new Paragraph("SUPLIDORA ALAJUELA FM, LTDA.").setFont(font).setBold().setFontSize(20f));
+//
+//        Table table = new Table(5);
+//        Cell c; 
+//        Color bkg = ColorConstants.RED;
+//        Color frg= ColorConstants.WHITE;
+//        c= new Cell(); c.add(new Paragraph("Cantidad")).setBackgroundColor(bkg).setFontColor(frg); 
+//        table.addHeaderCell(c);
+//        c= new Cell(); c.add(new Paragraph("Codigo")).setBackgroundColor(bkg).setFontColor(frg);
+//        table.addHeaderCell(c);     
+//        c= new Cell(); c.add(new Paragraph("Descripcion")).setBackgroundColor(bkg).setFontColor(frg);
+//        table.addHeaderCell(c); 
+//        c= new Cell(); c.add(new Paragraph("Precio")).setBackgroundColor(bkg).setFontColor(frg);
+//        table.addHeaderCell(c); 
+//        c= new Cell(); c.add(new Paragraph("Total")).setBackgroundColor(bkg).setFontColor(frg);
+//        table.addHeaderCell(c);                    
+//        
+//        for(int i=0;i<5;i++){
+//            table.addHeaderCell("2");
+//            table.addHeaderCell("AB34");
+//            table.addHeaderCell("Base para medidor");  
+//            table.addHeaderCell("5000");             
+//            table.addHeaderCell("10000");               
+//        }
+//        c= new Cell(1,4);  c.add(new Paragraph("SubTotal")).setBackgroundColor(bkg).setFontColor(frg).setTextAlignment(TextAlignment.RIGHT);
+//        table.addHeaderCell(c);                    
+//        c= new Cell();  c.add(new Paragraph("50000")).setBackgroundColor(bkg).setFontColor(frg);
+//        table.addHeaderCell(c);         
+//        document.add(table);
+//        document.close();
+//    }
     }
