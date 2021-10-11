@@ -16,6 +16,7 @@ import sistema.logic.Pagos;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Data {
+    private Cliente cliente;
     private List<Cliente> clientes;    
     private List<Provincia> provincias;
     private List<Canton> cantones;
@@ -24,6 +25,7 @@ public class Data {
     private List<Pagos> mensualidades;
 
     public Data() {
+        cliente = new Cliente();
         clientes = new ArrayList<>();    
         provincias = new ArrayList<>(); 
         prestamos = new ArrayList<>(); 
