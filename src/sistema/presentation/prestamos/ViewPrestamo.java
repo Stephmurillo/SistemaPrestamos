@@ -256,8 +256,8 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
 
     private void jButtonMostrarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarPagoActionPerformed
        if(jTablePrestamosC.getSelectedRow() != -1){
-            sistema.presentation.pagos.ModelPagos modelMensualidades = new sistema.presentation.pagos.ModelPagos();
-            modelMensualidades.setPrestamo(this.model.getPrestamos().get(jTablePrestamosC.getSelectedRow()));
+            sistema.presentation.pagos.ModelPagos modelPagos = new sistema.presentation.pagos.ModelPagos();
+            modelPagos.setPrestamo(this.model.getPrestamos().get(jTablePrestamosC.getSelectedRow()));
             controller.mensualidadShow();
        } 
     }//GEN-LAST:event_jButtonMostrarPagoActionPerformed

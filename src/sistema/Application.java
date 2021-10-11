@@ -46,14 +46,14 @@ public class Application {
         sistema.presentation.pagos.ModelPagos modelMensualidades = new sistema.presentation.pagos.ModelPagos() ;
         sistema.presentation.pagos.ViewPagos viewMensualidad = new sistema.presentation.pagos.ViewPagos();
         sistema.presentation.pagos.ControllerPagos controllerMensualidades = new sistema.presentation.pagos.ControllerPagos(modelMensualidades, viewMensualidad);
-        MENSUALIDADES = controllerMensualidades;    
+        PAGOS = controllerMensualidades;    
         
         CLIENTES.show();
     }
 
     public static sistema.presentation.cliente.Controller CLIENTES;
     public static sistema.presentation.prestamos.ControllerPrestamo PRESTAMOS;
-    public static sistema.presentation.pagos.ControllerPagos MENSUALIDADES;
+    public static sistema.presentation.pagos.ControllerPagos PAGOS;
     
     public static void createPdfPrestamos(List<Prestamo> prestamos) throws IOException {
         PdfFont font = PdfFontFactory.createFont(StandardFonts.HELVETICA);
