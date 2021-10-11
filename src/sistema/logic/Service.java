@@ -83,15 +83,16 @@ public class Service {
         else throw new Exception("Mensualidad ya existe");     
     } 
     
-    public Prestamo prestamoGet(String numero) throws Exception{
-        Prestamo result= data.getPrestamos().stream().filter(f->f.getCodigo().equals(numero)).findFirst().orElse(null);
+    public Prestamo prestamoGet(String ced, String numero) throws Exception{
+        Cliente clie = data.getClientes().stream().filter(c->c.getCedula().equals(ced)).findFirst().orElse(null);
+        Prestamo result = data.getPrestamos().stream().filter(f->f.getCodigo().equals(numero)).findFirst().orElse(null);
         if (result != null) return result;
         else throw new Exception("Prestamo no existe");   
     }
     
     public List<Prestamo> prestamoSearch(String ced){
        Cliente clie = data.getClientes().stream().filter(c->c.getCedula().equals(ced)).findFirst().orElse(null);
-       List<Prestamo> result = clie.getPrestamos();
+       List<Prestamo> result = data.getPrestamos();
        return result;        
     }
     

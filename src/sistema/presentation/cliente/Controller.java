@@ -1,6 +1,8 @@
 package sistema.presentation.cliente;
 
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 import sistema.Application;
 import sistema.logic.Canton;
 import sistema.logic.Cliente;
@@ -107,4 +109,9 @@ public class Controller {
         Application.PRESTAMOS.setCliente(model.getCliente());
         Application.PRESTAMOS.show(model.getCliente());
     }  
+
+    void createPdfClientes(List<Cliente> clientes) throws IOException{
+        Application.createPdfClientes(model.clientes);
+    }
+    
 }

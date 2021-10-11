@@ -1,7 +1,9 @@
 package sistema.presentation.pagos;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import sistema.Application;
 import sistema.logic.Pagos;
 import sistema.logic.Service;
@@ -46,6 +48,10 @@ public class ControllerPagos {
             pago.setEstado(true);
         }*/
         model.commit();
+    }
+    
+    void createPdfPagos(List<Pagos> pagos) throws IOException{
+        Application.createPdfPagos(model.getPagos());
     }
     
 //     public Prestamo prestamoGet(String cedula){
