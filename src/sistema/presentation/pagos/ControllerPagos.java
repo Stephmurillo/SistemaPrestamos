@@ -25,13 +25,13 @@ public class ControllerPagos {
     
     public void hide(){
         this.view.setVisible(false);
-        Application.PRESTAMOS.show();
+        Application.PRESTAMOS.hide();
         Application.CLIENTES.hide();
     }
     
-    public void pagoAdd(String cod, Pagos pago){
+    public void pagoAdd(String cod, String ced, Pagos pago){
         try {
-            Service.instance().pagoAdd(cod, pago);
+            Service.instance().pagoAdd(cod,ced,pago);
             model.setMensualidad(new Pagos());
             model.setPagos(Arrays.asList(pago));
             model.commit();
@@ -45,17 +45,17 @@ public class ControllerPagos {
         model.commit();
     }
     
-     public Prestamo prestamoGet(String cedula){
-        Prestamo prestamo = new Prestamo();
-        try {
-            prestamo = Service.instance().prestamoGet(cedula);
-            model.setPrestamo(prestamo);
-            model.commit();
-            return prestamo;
-        } catch (Exception ex) {
-            model.setPrestamo(new Prestamo());
-            model.commit();
-        }
-        return null;
-    }
+//     public Pago prestamoGet(String cod){
+//        Pago prestamo = new Pago();
+//        try {
+//            prestamo = Service.instance().prestamoGet(cod);
+//            model.setPago(prestamo);
+//            model.commit();
+//            return prestamo;
+//        } catch (Exception ex) {
+//            model.setPago(new Pago());
+//            model.commit();
+//        }
+//        return null;
+//    }
 }

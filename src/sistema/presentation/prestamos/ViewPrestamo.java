@@ -250,9 +250,10 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
 
     private void jButtonMostrarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarPagoActionPerformed
        if(jTablePrestamosC.getSelectedRow() != -1){
-            sistema.presentation.pagos.ModelPagos modelMensualidades = new sistema.presentation.pagos.ModelPagos();
-            modelMensualidades.setPrestamo(this.model.getPrestamos().get(jTablePrestamosC.getSelectedRow()));
-            controller.mensualidadShow();
+            sistema.presentation.pagos.ModelPagos modelPagos = new sistema.presentation.pagos.ModelPagos();
+            modelPagos.setPrestamo(this.model.getPrestamos().get(jTablePrestamosC.getSelectedRow()));
+           // System.out.print(modelPagos.getPrestamo().toString());
+            controller.pagoShow();
        } 
     }//GEN-LAST:event_jButtonMostrarPagoActionPerformed
 
@@ -265,7 +266,7 @@ public class ViewPrestamo extends javax.swing.JFrame implements java.util.Observ
     }//GEN-LAST:event_jButtonListarActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        controller.prestamoGet(jTextFieldCodigo.getText());
+        controller.prestamoGet(jTextFieldCodigo.getText(),model.cliente.getCedula());
     }//GEN-LAST:event_jButtonBuscarActionPerformed
    
     // Variables declaration - do not modify//GEN-BEGIN:variables

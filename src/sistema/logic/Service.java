@@ -1,7 +1,6 @@
 package sistema.logic;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import sistema.data.Data;
 import sistema.data.XmlPersister;
 
@@ -70,19 +69,21 @@ public class Service {
     public void prestamoAdd(String ced, Prestamo prestamo) throws Exception{
         Cliente clie = data.getClientes().stream().filter(c->c.getCedula().equals(ced)).findFirst().orElse(null);
         Prestamo old = clie.getPrestamos().stream().filter(p->p.getCodigo().equals(prestamo.getCodigo())).findFirst().orElse(null);
-        if (old == null) data.getPrestamos().add(prestamo);
+        if (old == null) clie.prestamos.add(prestamo);
         else throw new Exception("Prestamo ya existe");     
     } 
     
-    public void pagoAdd(String cod, Pagos pago) throws Exception{
-        Prestamo pres = data.getPrestamos().stream().filter(c->c.getCodigo().equals(cod)).findFirst().orElse(null);
+    public void pagoAdd(String cod, String ced, Pagos pago) throws Exception{
+        Cliente clie = data.getClientes().stream().filter(c->c.getCedula().equals(ced)).findFirst().orElse(null);
+        Prestamo pres = clie.getPrestamos().stream().filter(c->c.getCodigo().equals(cod)).findFirst().orElse(null);
         Pagos old = pres.getPagos().stream().filter(c->c.getNumero().equals(pago.getNumero())).findFirst().orElse(null);
-        if (old == null) data.getMensualidades().add(pago);
+        if (old == null) pres.getPagos().add(pago);
         else throw new Exception("Mensualidad ya existe");     
     } 
     
-    public Prestamo prestamoGet(String numero) throws Exception{
-        Prestamo result= data.getPrestamos().stream().filter(f->f.getCodigo().equals(numero)).findFirst().orElse(null);
+    public Prestamo prestamoGet(String numero, String ced) throws Exception{
+         Cliente clie = data.getClientes().stream().filter(c->c.getCedula().equals(ced)).findFirst().orElse(null);
+        Prestamo result= clie.getPrestamos().stream().filter(f->f.getCodigo().equals(numero)).findFirst().orElse(null);
         if (result != null) return result;
         else throw new Exception("Prestamo no existe");   
     }
